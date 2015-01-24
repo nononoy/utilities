@@ -3,4 +3,7 @@
 #= require twitter/bootstrap
 #= require bootstrap
 
+#= require jquery.kladr.min
+#= require users
+
 #= require turbolinks

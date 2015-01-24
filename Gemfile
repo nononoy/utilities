@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby '2.2.0'
 gem 'rails',        '4.2.0'
 
 gem 'mysql2'
@@ -32,7 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development do
 
   gem 'letter_opener'
-  # gem 'pry-rails'
+  gem 'pry-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

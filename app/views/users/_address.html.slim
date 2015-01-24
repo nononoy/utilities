@@ -1,0 +1,55 @@
+/ meta content=("text/html; charset=utf-8") http-equiv="content-type" /
+/ title Форма для ввода адреса с картой
+/ link href="../jquery.kladr.min.css" rel="stylesheet" /
+/ link href="css/form_with_map.css" rel="stylesheet" /
+
+
+.address
+  h1 Форма для ввода адреса с картой
+  .row
+    .col-md-6
+      .field
+        label Регион
+        input name="region" type="text" /
+      .field
+        label Район
+        input name="district" type="text" /
+      .field
+        label Город
+        input name="city" type="text" /
+      .field
+        label Улица
+        input name="street" type="text" /
+      .field
+        label Номер дома
+        input name="building" type="text" /
+    .addition
+      .block
+        p.title Текстовое представление адреса
+        p#address.value
+      .block
+        p.title Выбранный объект
+        ul.js-log
+          li#id style=("display: none;")
+            span.name Код:
+            span.value
+          li#zip style=("display: none;")
+            span.name Почтовый индекс:
+            span.value
+          li#name style=("display: none;")
+            span.name Название:
+            span.value
+          li#type style=("display: none;")
+            span.name Подпись:
+            span.value
+          li#typeShort style=("display: none;")
+            span.name Подпись коротко:
+            span.value
+          li#contentType style=("display: none;")
+            span.name Тип объекта:
+            span.value
+          li#okato style=("display: none;")
+            span.name ОКАТО:
+            span.value
+    .col-md-6
+      #map.panel-map

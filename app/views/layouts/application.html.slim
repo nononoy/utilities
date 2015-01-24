@@ -17,7 +17,7 @@ html lang="en"
     = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application", 'data-turbolinks-track' => true
-
+    script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"
   body
     .navbar.navbar-default.navbar-static-top
         .container
@@ -39,17 +39,17 @@ html lang="en"
 
     .container
       .row
-        .col-lg-9
+        .col-lg-12
           = bootstrap_flash
           = yield
-        .col-lg-3
-          .well.sidebar-nav
-            h3 Sidebar
-            ul.nav.nav-list
-              li.nav-header Sidebar
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
+        / .col-lg-3
+        /   .well.sidebar-nav
+        /     h3 Sidebar
+        /     ul.nav.nav-list
+        /       li.nav-header Sidebar
+        /       li= link_to "Link 1", "/path1"
+        /       li= link_to "Link 2", "/path2"
+        /       li= link_to "Link 3", "/path3"
 
       footer
         p &copy; Company 2015
