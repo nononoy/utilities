@@ -1,12 +1,25 @@
-= simple_form_for @user, html: { class: 'form-horizontal js-form-address' } do |f|
-  = f.error_notification
+.row
+  = simple_form_for @user, html: { class: 'form-horizontal js-form-address' },
+    wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
+      radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+    = f.error_notification
+    .col-md-6
+      = f.input :email, required: true
+      = f.input :password, required: true
+      = f.input :password_confirmation, required: true
 
-  .form-inputs
-    = f.input :email
-    = f.input :password
-    = f.input :password_confirmation
+      / = f.input :region
+      / = f.input :district
+      = f.input :city
+      = f.input :street
+      = f.input :building
+      = f.input :apartment
+      = f.input :address, as: :hidden
 
-    = render partial: 'users/address', locals: { f: f }
+    .col-md-6
+      .embed-responsive.embed-responsive-16by9
+        #map.panel-map.embed-responsive-item
 
-  .form-actions
+    .clearfix
+
     = f.button :submit

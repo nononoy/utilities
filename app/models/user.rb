@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   validates :email, uniqueness: true
+  validates_presence_of :city, :street, :building, :apartment
+
 end

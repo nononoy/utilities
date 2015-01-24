@@ -1,0 +1,18 @@
+ru:
+  activerecord:
+    attributes:
+      tran:
+        description: "Description"
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "Не может быть короче %{count} символов"
+            email:
+              taken: "Данный адрес уже зарегистрирован"
+            password_confirmation:
+              confirmation: 'Подтверждение пароля не совпадает с паролем'
+  errors:
+    messages:
+      blank: "Обязательное поле"

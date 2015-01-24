@@ -52,23 +52,15 @@ $(document).on "ready page:load", ->
     return
   addressUpdate = ->
     address = $.kladr.getAddress(".js-form-address")
-    $("#address").text address
+    $("[name='user[address]']").val address
     return
-  log = (obj) ->
-    $log = undefined
-    i = undefined
-    $(".js-log li").hide()
-    for i of obj
-      $log = $("#" + i)
-      if $log.length
-        $log.find(".value").text obj[i]
-        $log.show()
-    return
-  $region = $("[name=\"region\"]")
-  $district = $("[name=\"district\"]")
-  $city = $("[name=\"city\"]")
-  $street = $("[name=\"street\"]")
-  $building = $("[name=\"building\"]")
+
+  # $region = $("[name='user[region]']")
+  # $district = $("[name='user[district]']")
+  $city = $("[name='user[city]']")
+  $street = $("[name='user[street]']")
+  $building = $("[name='user[building]']")
+
   map = null
   map_created = false
 
@@ -100,8 +92,9 @@ $(document).on "ready page:load", ->
       label
 
     change: (obj) ->
+      # if obj && obj.contentType == 'city'
+      #   console.log(obj)
       setLabel $(@), obj.type  if obj
-      log obj
       addressUpdate()
       mapUpdate()
       return
@@ -109,39 +102,41 @@ $(document).on "ready page:load", ->
     checkBefore: ->
       $input = $(@)
       unless $.trim($input.val())
-        log null
         addressUpdate()
         mapUpdate()
         false
 
-  console.log($region)
-  console.log($district)
-  console.log($city)
-  console.log($street)
-  console.log($building)
+  # $region.kladr
+  #   type: $.kladr.type.region
+  #   token: '53022dde31608f4d77000030'
+  # $district.kladr
+  #   token: '53022dde31608f4d77000030'
+  #   type: $.kladr.type.district
+  $city.kladr
+    token: '53022dde31608f4d77000030'
+    type: $.kladr.type.city
+  $street.kladr
+    token: '53022dde31608f4d77000030'
+    type: $.kladr.type.street
+    valueFormat: (obj, query) ->
+      "#{obj.typeShort}. #{obj.name}"
+  $building.kladr
+    token: '53022dde31608f4d77000030'
+    type: $.kladr.type.building
 
-  $region.kladr "token", '53022dde31608f4d77000030'
-  $district.kladr "token", '53022dde31608f4d77000030'
-  $city.kladr "token", '53022dde31608f4d77000030'
-  $street.kladr "token", '53022dde31608f4d77000030'
-  $building.kladr "token", '53022dde31608f4d77000030'
-
-  $region.kladr "type", $.kladr.type.region
-  $district.kladr "type", $.kladr.type.district
-  $city.kladr "type", $.kladr.type.city
-  $street.kladr "type", $.kladr.type.street
-  $building.kladr "type", $.kladr.type.building
 
   $city.kladr "withParents", true
   $building.kladr "verify", false
 
+  # ymaps.ready ->
   ymaps.ready ->
     return  if map_created
     map_created = true
     map = new ymaps.Map("map",
       center: [
-        55.76
-        37.64
+        56.1365500
+        40.3965800
+
       ]
       zoom: 12
       controls: []
