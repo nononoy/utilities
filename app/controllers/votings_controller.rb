@@ -26,6 +26,6 @@ class VotingsController < ApplicationController
   private
 
     def voting_params
-      params.require(:voting).permit(:user_id, :description, :title, :start_at, :end_at, :attachment, :notify_all)
+      params.require(:voting).permit(:user_id, :description, :title, :start_at, :end_at, :attachment, :notify_all, :is_published)
     end
 end

@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
 
   def create
     if @user = login(params[:email], params[:password], params[:remember_me])
-      redirect_back_or_to(:users, notice: 'Успешный вход!')
+      redirect_back_or_to(:votings, notice: 'Успешный вход!')
     else
       flash.now[:alert] = 'Проблемы авторизации'
       render action: 'new'
@@ -15,6 +15,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:users, notice: 'Успешный выход!')
+    redirect_to(:votings, notice: 'Успешный выход!')
   end
 end
