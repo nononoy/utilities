@@ -1,0 +1,15 @@
+.panel.panel-default
+  #headingTwo.panel-heading role="tab"
+    h4.panel-title
+      a.collapsed aria-controls="voting#{voting.id}" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#voting#{voting.id}"
+        .voting-title
+          span.nmb № #{voting.id}
+          span.ttl= voting.title
+          span.period с #{voting.start_at.strftime("%d.%m.%Y")} по #{voting.end_at.strftime("%d.%m.%Y")}
+          span.rate за 56% против 12%
+          span.print распечатать
+  .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
+    .panel-body
+      .well= voting.description
+      'Я, собственник кв. №#{current_user.apartment}, предлагаю #{voting.title}
+

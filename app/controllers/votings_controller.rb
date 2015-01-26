@@ -1,6 +1,8 @@
 class VotingsController < ApplicationController
 
   def index
+    @building = current_user.house
+    @active_votings = @building.votings.active
   end
 
   def new

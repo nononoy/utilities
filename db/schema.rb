@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126121017) do
+ActiveRecord::Schema.define(version: 20150126132058) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "city",       limit: 255
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 20150126121017) do
 
   add_index "user_buildings", ["building_id"], name: "index_user_buildings_on_building_id", using: :btree
   add_index "user_buildings", ["user_id"], name: "index_user_buildings_on_user_id", using: :btree
+
+  create_table "user_votings", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "voting_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "user_votings", ["user_id"], name: "index_user_votings_on_user_id", using: :btree
+  add_index "user_votings", ["voting_id"], name: "index_user_votings_on_voting_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                           limit: 255,               null: false
@@ -81,11 +91,16 @@ ActiveRecord::Schema.define(version: 20150126121017) do
     t.boolean  "is_published", limit: 1,     default: false
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
+    t.integer  "building_id",  limit: 4
   end
 
+  add_index "votings", ["building_id"], name: "index_votings_on_building_id", using: :btree
   add_index "votings", ["user_id"], name: "index_votings_on_user_id", using: :btree
 
   add_foreign_key "user_buildings", "buildings"
   add_foreign_key "user_buildings", "users"
+  add_foreign_key "user_votings", "users"
+  add_foreign_key "user_votings", "votings"
+  add_foreign_key "votings", "buildings"
   add_foreign_key "votings", "users"
 end

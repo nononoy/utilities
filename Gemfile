@@ -28,13 +28,20 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mini_magick'
 gem 'carrierwave'
 
+gem 'puma'
+
+gem 'capistrano', '~> 3.2.0'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+gem 'capistrano3-puma'
 
 # gem 'capistrano-rails', group: :development
 
 group :development do
 
   gem 'letter_opener'
-  gem 'pry-rails'
+  # gem 'pry-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 

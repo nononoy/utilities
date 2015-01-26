@@ -13,14 +13,18 @@ class User < ActiveRecord::Base
   has_many :user_buildings, dependent: :destroy
   has_many :buildings, through: :user_buildings
 
+  has_many :user_votings, dependent: :destroy
 
   after_create :set_user_buildings
 
 
+  def house
+    Building.where(city: city, street: street, number: building).first_or_create
+  end
+
   private
 
     def set_user_buildings
-      house = Building.where(city: city, street: street, nubmer: building).first_or_create
       user_buildings.where(building_id: house.id).first_or_create
     end
 

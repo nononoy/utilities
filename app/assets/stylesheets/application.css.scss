@@ -33,3 +33,24 @@
     margin: 0;
   }
 }
+
+
+.voting-title {
+  span {
+    display: inline-block;
+  }
+  .nmb {
+    width: 40px;
+  }
+  .ttl {
+    margin-right: 10px;
+  }
+  .period {
+    width: 230px;
+  }
+
+  .print {
+    float: right;
+    cursor: pointer;
+  }
+}
