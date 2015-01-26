@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150124133358) do
+ActiveRecord::Schema.define(version: 20150126103049) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                           limit: 255,               null: false
@@ -51,4 +51,21 @@ ActiveRecord::Schema.define(version: 20150124133358) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", using: :btree
 
+  create_table "votings", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.date     "start_at"
+    t.datetime "end_at"
+    t.text     "description",  limit: 65535
+    t.string   "title",        limit: 255
+    t.string   "attachment",   limit: 255
+    t.boolean  "notify_all",   limit: 1,     default: false
+    t.boolean  "is_closed",    limit: 1,     default: false
+    t.boolean  "is_published", limit: 1,     default: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "votings", ["user_id"], name: "index_votings_on_user_id", using: :btree
+
+  add_foreign_key "votings", "users"
 end

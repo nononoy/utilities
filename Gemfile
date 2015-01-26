@@ -25,6 +25,9 @@ gem 'puma'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'mini_magick'
+gem 'carrierwave'
+
 
 # gem 'capistrano-rails', group: :development
 

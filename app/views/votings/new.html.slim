@@ -1,0 +1,43 @@
+h2 Объявить собрание
+= current_user.address
+br
+br
+= simple_form_for @voting, html: { class: 'form-horizontal' } do |f|
+  = f.input :user_id, as: :hidden
+  = f.input :description, input_html: { placeholder: 'Опишите причину, почему вы предлагаете свой вопрос или прочитайте инструкцию, нажав на кнопку сто знаком вопроса (?)', rows: 6 }, label: false
+  p Исходя из этого, я, собственник кв. № #{current_user.apartment} предлагаю:
+  = f.input :title, label: false, input_html: { placeholder: 'Впишите заголовок(не более трех слов)' }
+
+  .form-inline.date-inputs
+
+    .txt Дата проведения:
+
+    .form-group
+      label for="voting_start_at" с
+      = f.text_field :start_at,  class: 'date form-control'
+
+    .form-group
+      label for="voting_end_at" по
+      = f.text_field :end_at, class: 'datetime form-control'
+  br
+  .row
+    .col-md-6
+      = f.input :attachment, label: false
+    .col-md-6
+      = f.input :notify_all, label: 'Сделать рассылку всем собственникам'
+  .clearfix
+  .form-group
+    .panel.panel-default
+      .panel-heading
+        'Чтобы собственники проголосовали оперативно надо:
+      .panel-body
+        ol
+          li В каждом подъезде повесить объявление.
+          li На электронном табло на вашем доме вывести этот вопрос.
+          li Обзвонить, кого возможно, и сказать, что началось голосование.
+          li По секрету поделиться с бабушками у подъезда (тем самым запустить сарафанное радио).
+          li Поставить галочку напротив кнопки "Сделать рассылку всем собственникам".
+          li Не забудьте проголосовать самостоятельно
+
+  .form-group
+    = f.button :submit, 'Опубликовать'

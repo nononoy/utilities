@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root to: 'users#index'
+  root to: 'votings#index'
   resources :user_sessions
   resources :users do
     member do
@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
   resources :password_resets
+  resources :votings
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
 

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to(login_path, :notice => 'User was successfully activated.')
+      redirect_to(login_path, :notice => 'Вы успешно активировали свою учетную запись')
     else
       not_authenticated
     end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'Вы успешно зарегистрировались. в Течении нескольких минут на указанный Вами адрес придет письмо с дальнейшими иструкциями.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Успешное редактирование' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

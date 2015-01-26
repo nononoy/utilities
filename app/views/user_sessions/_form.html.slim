@@ -1,16 +1,19 @@
-= form_tag user_sessions_path, method: :post do
-  .field
-    = label_tag :email
-    br
-    = text_field_tag :email
-  .field
-    = label_tag :password
-    br
-    = password_field_tag :password
-  .field
-    = label_tag :remember_me
-    br
-    = check_box_tag :remember_me
-  .actions
-    = submit_tag "Login"
+= form_tag user_sessions_path, method: :post, class: 'form-horizontal' do
+  .form-group
+    label.col-sm-2.control-label for="inputEmail3"  Email
+    .col-sm-10
+      = text_field_tag :email, '', class: "form-control", placeholder: "Email"
+  .form-group
+    label.col-sm-2.control-label for="inputPassword3"  Пароль
+    .col-sm-10
+      = password_field_tag :password, '', class: "form-control", placeholder: "Пароль"
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      .checkbox
+        label
+          input type="checkbox" name='remember_me'
+          | Remember me
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      button.btn.btn-default type="submit"  Вход
 

@@ -1,0 +1,35 @@
+/*
+ *= require bootstrap_and_overrides
+ *= require jquery.kladr.min
+ *= require_self
+ */
+
+.centered {
+  text-align: center;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.form-control {
+
+}
+
+.date-inputs {
+  margin-left: -15px;
+  .txt {
+    margin-left: 15px;
+    display: inline-block;
+  }
+
+  label {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: normal;
+  }
+
+  .form-group {
+    margin: 0;
+  }
+}

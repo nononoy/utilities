@@ -1,5 +1,31 @@
-h1 Login
+h1 Создан, чтобы решать
 
-= render 'form'
+.row
+  .col-md-6
+    .well.well-lg
+      = form_tag user_sessions_path, method: :post, class: 'form-horizontal' do
+        .form-group
+          label.col-sm-2.control-label for="inputEmail3"  Email
+          .col-sm-10
+            = text_field_tag :email, '', class: "form-control", placeholder: "Email"
+        .form-group
+          label.col-sm-2.control-label for="inputPassword3"  Пароль
+          .col-sm-10
+            = password_field_tag :password, '', class: "form-control", placeholder: "Пароль"
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            .checkbox
+              label
+                input type="checkbox" name='remember_me'
+                | Запомнить меня
+        .form-group
+          .col-sm-offset-2.col-sm-10
 
-= link_to 'Back', user_sessions_path
+            button.btn.btn-warning.width100 type="submit"  Вход
+  .col-md-6
+    .well.well-lg
+      .centered
+        h2 Если Вы хотите зарегистрироваться
+        = link_to 'Регистрация', new_user_path
+
+/ = link_to 'Back', user_sessions_path
