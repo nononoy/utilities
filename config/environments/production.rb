@@ -89,7 +89,7 @@ Rails.application.configure do
       port:    25,
       user_name: 'yakh33@yandex.ru',
       password:  'ggogle.com',
-      authentication: 'plain',
+      authentication: :plain,
       enable_starttls_auto: true
     }
 
