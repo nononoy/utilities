@@ -5,7 +5,9 @@ ru:
         email: E-mail
         password: Пароль
         password_confirmation: Подтверждение пароля
+      user_building:
         city: Город
         street: Улица
-        building: Дом
+        building_number: Дом
         apartment: Квартира
+        share: Доля

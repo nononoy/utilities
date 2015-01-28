@@ -30,6 +30,7 @@ html lang="en"
             ul.nav.navbar-nav.pull-right
               / li= link_to "Link 1", "/path1"
               / li= link_to "Link 2", "/path2"
+              li class=class_active?('users', ['edit', 'update']) = link_to "Профиль", profile_path
               li
                 - if current_user
                   = link_to "Выход", logout_path, method: :post
