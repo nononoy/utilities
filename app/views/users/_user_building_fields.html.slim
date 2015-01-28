@@ -1,8 +1,10 @@
 .nested-fields
-  = f.input :city, input_html: { class: 'js-city' }
-  = f.input :street, input_html: { class: 'js-street' }
-  = f.input :building_number, input_html: { class: 'js-building_number' }
+  / h4 Адрес
+  = f.input :city, input_html: { class: 'js-city', value: (f.object.try(:city) || f.object.building.try(:city)) }
+  = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)) }
+  = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || f.object.building.try(:number)) }
   = f.input :apartment
   = f.input :share
   = f.input :address, as: :hidden, input_html: { class: 'js-address' }
-  = link_to_remove_association "удалить", f
+  = link_to_remove_association "удалить адрес", f
+  .clearfix

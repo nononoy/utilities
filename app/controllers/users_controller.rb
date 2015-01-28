@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:index, :new, :create, :activate]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy]
 
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
 
   def create
@@ -67,7 +68,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation,
-        user_buildings_attributes: [ :city, :street, :building_number, :apartment, :share, :address ]
+        user_buildings_attributes: [ :id, :city, :street, :building_number, :apartment, :share, :address, :_destroy ]
       )
     end
 end

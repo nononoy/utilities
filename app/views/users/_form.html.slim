@@ -3,9 +3,10 @@
     wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
       radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
     = f.error_notification
-    = f.input :email, required: true
-    = f.input :password, required: true
-    = f.input :password_confirmation, required: true
+    - unless current_user
+      = f.input :email, required: true
+      = f.input :password, required: true
+      = f.input :password_confirmation, required: true
     #user_buildings
       = f.simple_fields_for :user_buildings do |user_building|
         = render 'user_building_fields', f: user_building

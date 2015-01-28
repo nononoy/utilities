@@ -69,3 +69,6 @@ $(document).on "ready page:load", ->
 
   $('#user_buildings').on 'cocoon:before-insert', (e, insertedItem) ->
     initKladr(insertedItem)
+
+  $('.nested-fields').each ->
+    initKladr($(@))
