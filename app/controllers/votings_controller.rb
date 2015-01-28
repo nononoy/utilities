@@ -2,6 +2,7 @@ class VotingsController < ApplicationController
 
   def index
     @buildings = current_user.buildings
+    @user_buildings = current_user.user_buildings.to_a
     @active_votings = current_user.building_votings.active
   end
 
@@ -26,6 +27,6 @@ class VotingsController < ApplicationController
   private
 
     def voting_params
-      params.require(:voting).permit(:user_id, :description, :title, :start_at, :end_at, :attachment, :notify_all, :is_published)
+      params.require(:voting).permit(:user_id, :description, :title, :start_at, :end_at, :attachment, :notify_all, :is_published, :building_id)
     end
 end

@@ -17,6 +17,8 @@ class UserBuilding < ActiveRecord::Base
 
   before_create :set_building
 
+  scope :by_building, -> (building) { where(building: building) }
+
   private
 
     def set_building

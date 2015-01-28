@@ -11,5 +11,5 @@
   .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
     .panel-body
       .well= voting.description
-      'Я, собственник кв. №#{current_user.apartment}, предлагаю #{voting.title}
+      'Я, собственник кв. №#{@user_buildings.find{ |ub| ub.building_id == voting.building_id }.apartment}, предлагаю #{voting.title}
 
