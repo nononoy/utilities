@@ -13,13 +13,15 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 
+gem "cocoon"
+
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 
 gem "sorcery"
 gem 'simple_form'
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+
 gem 'puma'
 
 gem 'jbuilder', '~> 2.0'
@@ -27,8 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'mini_magick'
 gem 'carrierwave'
-
-gem 'puma'
 
 gem 'capistrano', '~> 3.2.0'
 gem 'capistrano-bundler'

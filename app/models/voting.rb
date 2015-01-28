@@ -28,11 +28,11 @@ class Voting < ActiveRecord::Base
   scope :active, -> { published }
 
 
-  before_create :set_building
+  # before_create :set_building
 
-  def set_building
-    self.building = user.house
-  end
+  # def set_building
+  #   self.building = user.house
+  # end
 
 
 end

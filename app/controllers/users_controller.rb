@@ -27,7 +27,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'Вы успешно зарегистрировались. в Течении нескольких минут на указанный Вами адрес придет письмо с дальнейшими иструкциями.' }
@@ -67,6 +66,8 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :city, :street, :building, :apartment, :address)
+      params.require(:user).permit(:email, :password, :password_confirmation,
+        user_buildings_attributes: [ :city, :street, :building_number, :apartment, :share, :address ]
+      )
     end
 end

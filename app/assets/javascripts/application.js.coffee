@@ -5,7 +5,9 @@
 
 #= require jquery.mask
 #= require jquery.kladr.min
+#= require cocoon
 #= require users
+#= require votings
 
 #= require turbolinks
 $(document).on "ready page:load", ->

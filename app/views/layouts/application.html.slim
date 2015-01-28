@@ -25,11 +25,11 @@ html lang="en"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand href="#" ЖКХ-33.РФ
+          a.navbar-brand href=root_url ЖКХ-33.РФ
           .navbar-collapse.collapse.navbar-responsive-collapse
-            ul.nav.navbar-nav
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
+            ul.nav.navbar-nav.pull-right
+              / li= link_to "Link 1", "/path1"
+              / li= link_to "Link 2", "/path2"
               li
                 - if current_user
                   = link_to "Выход", logout_path, method: :post

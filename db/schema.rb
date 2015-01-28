@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150126132058) do
+ActiveRecord::Schema.define(version: 20150128082532) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "city",       limit: 255
@@ -24,8 +24,11 @@ ActiveRecord::Schema.define(version: 20150126132058) do
   create_table "user_buildings", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.integer  "building_id", limit: 4
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "apartment",   limit: 4
+    t.integer  "share",       limit: 4
+    t.text     "address",     limit: 65535
   end
 
   add_index "user_buildings", ["building_id"], name: "index_user_buildings_on_building_id", using: :btree
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150126132058) do
   add_index "user_votings", ["voting_id"], name: "index_user_votings_on_voting_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                           limit: 255,               null: false
+    t.string   "email",                           limit: 255,             null: false
     t.string   "crypted_password",                limit: 255
     t.string   "salt",                            limit: 255
     t.datetime "created_at"
@@ -55,21 +58,13 @@ ActiveRecord::Schema.define(version: 20150126132058) do
     t.string   "activation_state",                limit: 255
     t.string   "activation_token",                limit: 255
     t.datetime "activation_token_expires_at"
-    t.integer  "failed_logins_count",             limit: 4,     default: 0
+    t.integer  "failed_logins_count",             limit: 4,   default: 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token",                    limit: 255
     t.datetime "last_login_at"
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address",      limit: 255
-    t.string   "zip_code",                        limit: 255
-    t.string   "region",                          limit: 255
-    t.string   "district",                        limit: 255
-    t.string   "city",                            limit: 255
-    t.string   "street",                          limit: 255
-    t.string   "building",                        limit: 255
-    t.integer  "apartment",                       limit: 4
-    t.text     "address",                         limit: 65535
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree

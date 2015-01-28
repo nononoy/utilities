@@ -1,0 +1,8 @@
+.nested-fields
+  = f.input :city, input_html: { class: 'js-city' }
+  = f.input :street, input_html: { class: 'js-street' }
+  = f.input :building_number, input_html: { class: 'js-building_number' }
+  = f.input :apartment
+  = f.input :share
+  = f.input :address, as: :hidden, input_html: { class: 'js-address' }
+  = link_to_remove_association "удалить", f

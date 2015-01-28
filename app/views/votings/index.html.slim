@@ -1,6 +1,8 @@
+
 h2 Собрания нашего дома
-= "#{@building.street}, #{@building.number}"
-br
+- @buildings.each do |building|
+  = building.short_address
+  br
 br
 
 div role="tabpanel"
