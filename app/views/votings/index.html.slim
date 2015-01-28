@@ -19,7 +19,8 @@ div role="tabpanel"
       #accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: @active_votings
     #closed.tab-pane role="tabpanel"
-      ' тут закрытые
+      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
+        = render partial: 'votings/voting', collection: @closed_votings
 
 
 .pull-right

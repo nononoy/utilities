@@ -21,18 +21,25 @@ class Voting < ActiveRecord::Base
 
   has_many :user_votings, dependent: :destroy
 
-  scope :closed, -> { where(is_closed: true) }
+  # scope :closed, -> { where(is_closed: true) }
+  scope :closed, -> { published.where("end_at < ?", Time.now.utc) }
   scope :published, -> { where(is_published: true) }
   scope :drafts, -> { where(is_published: false) }
 
-  scope :active, -> { published }
+  scope :active, -> { published.where("end_at >= ?", Time.now.utc) }
 
 
-  # before_create :set_building
+  before_create :set_end_at
 
   # def set_building
   #   self.building = user.house
   # end
+
+  private
+    def set_end_at
+      # self.start_at = start_at.utc
+      self.end_at = end_at.to_datetime.change(offset: "+0300")
+    end
 
 
 end
