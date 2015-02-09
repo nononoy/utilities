@@ -30,11 +30,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mini_magick'
 gem 'carrierwave'
 
+gem 'enumerize'
+
 gem 'capistrano', '~> 3.2.0'
 gem 'capistrano-bundler'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'capistrano3-puma'
+
 
 # gem 'capistrano-rails', group: :development
 

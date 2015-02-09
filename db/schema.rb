@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128082532) do
+ActiveRecord::Schema.define(version: 20150209164724) do
 
   create_table "buildings", force: :cascade do |t|
     t.string   "city",       limit: 255
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150128082532) do
     t.datetime "last_logout_at"
     t.datetime "last_activity_at"
     t.string   "last_login_from_ip_address",      limit: 255
+    t.integer  "status",                          limit: 4
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree

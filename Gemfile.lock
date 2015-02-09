@@ -80,6 +80,8 @@ GEM
     commonjs (0.2.7)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    enumerize (0.9.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.2.2)
     faraday (0.9.1)
@@ -243,6 +245,7 @@ DEPENDENCIES
   carrierwave
   cocoon
   coffee-rails (~> 4.1.0)
+  enumerize
   jbuilder (~> 2.0)
   jquery-rails
   less-rails

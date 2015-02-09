@@ -1,0 +1,7 @@
+ru:
+  enumerize:
+    user:
+      status:
+        individual: 'Физическое лицо'
+        legal: 'Юридическое лицо'
+        management_company: 'Управляющая компания'

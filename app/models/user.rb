@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
+  extend Enumerize
+
   authenticates_with_sorcery!
+
 
   validates :password, length: { minimum: 4 }, on: :create
   validates :password, confirmation: true, on: :create
@@ -19,4 +22,5 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :user_buildings, reject_if: :all_blank, allow_destroy: true
 
+  enumerize :status, in: { individual: 1, legal: 2, management_company: 3 }, default: :individual
 end
