@@ -4,11 +4,13 @@ br
   = f.input :password, required: true
   = f.input :password_confirmation, required: true
   = f.input :status, as: :radio_buttons, label: ''
+- if current_user && current_user.user_buildings.count == 0
+  h4 У вас нет ни одного объекта собственности
 #user_buildings
   = f.simple_fields_for :user_buildings do |user_building|
     = render 'user_building_fields', f: user_building
   .links
-    = link_to_add_association 'добавить еще квартиру', f, :user_buildings
+    = link_to_add_association 'добавить объект', f, :user_buildings
 .clearfix
 
 .form-group

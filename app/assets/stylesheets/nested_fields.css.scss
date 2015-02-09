@@ -1,4 +1,4 @@
-.nested-fields, .links {
+.nested-fields {
   text-align: center;
 
   .remove_fields {
@@ -6,4 +6,8 @@
     margin-top: -15px;
     margin-bottom: 15px;
   }
+}
+
+.links {
+  text-align: left;
 }
