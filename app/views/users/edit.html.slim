@@ -1,3 +1,18 @@
 h4= current_user.email
 
-== render 'form'
+div role="tabpanel"
+  ul.nav.nav-tabs
+    li.active
+      a aria-controls="home" data-toggle="tab" href="#home" role="tab" Объекты собственности
+    li
+      a aria-controls="info" data-toggle="tab" href="#info" role="tab" Информация о пользователе
+
+  = simple_form_for @user, html: { class: 'form-horizontal js-form-address' },
+      wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+    = f.error_notification
+    .tab-content
+      #home.tab-pane.active
+        == render 'form', f: f
+      #info.tab-pane
+        'info
