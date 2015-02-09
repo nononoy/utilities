@@ -4,7 +4,7 @@
   = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)) }
   = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || f.object.building.try(:number)) }
   = f.input :apartment
-  = f.input :share
+  = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %"
   = f.input :address, as: :hidden, input_html: { class: 'js-address' }
   = link_to_remove_association "удалить адрес", f
   .clearfix
