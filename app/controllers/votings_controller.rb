@@ -1,7 +1,7 @@
 class VotingsController < ApplicationController
 
   def index
-    @buildings = current_user.buildings
+    @buildings = current_user.buildings.uniq
     @user_buildings = current_user.user_buildings.to_a
     @active_votings = current_user.building_votings.active
     @closed_votings = current_user.building_votings.closed

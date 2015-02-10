@@ -20,6 +20,9 @@ class Voting < ActiveRecord::Base
   validates_presence_of :user_id, :title, :start_at, :end_at, :description
 
   has_many :user_votings, dependent: :destroy
+  has_many :voting_questions, dependent: :destroy
+
+  accepts_nested_attributes_for :voting_questions, reject_if: :all_blank, allow_destroy: true
 
   # scope :closed, -> { where(is_closed: true) }
   scope :closed, -> { published.where("end_at < ?", Time.now.utc) }
@@ -30,10 +33,6 @@ class Voting < ActiveRecord::Base
 
 
   before_create :set_end_at
-
-  # def set_building
-  #   self.building = user.house
-  # end
 
   private
     def set_end_at

@@ -6,6 +6,6 @@ class Building < ActiveRecord::Base
   has_many :votings, dependent: :destroy
 
   def short_address
-    "#{street}, #{number}"
+    "#{city}, #{street}, #{number}"
   end
 end

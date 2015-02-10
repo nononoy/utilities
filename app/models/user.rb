@@ -37,4 +37,8 @@ class User < ActiveRecord::Base
     user_buildings.any?
   end
 
+  def apartments
+    buildings.inject({}){ |hash, b| hash[b.id] ||= []; hash[b.id] << b.apartment; hash }
+  end
+
 end
