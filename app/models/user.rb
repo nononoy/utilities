@@ -22,9 +22,15 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :user_buildings, reject_if: :all_blank, allow_destroy: true
 
+
   enumerize :status, in: { individual: 1, legal: 2, management_company: 3 }, default: :individual
   enumerize :type_of_organization, in: { ao: 1, ooo: 2, odo: 3 }
   enumerize :document_type, in: { russian_passport: 1, foreign_passport: 2,
     residence_permit_of_foreign_citizen: 3, residence_permit_stateless_persons: 4, birth_certificate: 5 }
+
+
+  def is_management_company?
+    status == 'management_company'
+  end
 
 end

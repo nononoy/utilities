@@ -15,11 +15,12 @@ class UserBuilding < ActiveRecord::Base
 
   mount_uploader :certificate, CertificateUploader
 
-  attr_accessor :city, :street, :building_number
+  attr_accessor :city, :street, :building_number, :num_of_facilities, :full_building_square
 
   belongs_to :user
   belongs_to :building
 
+  accepts_nested_attributes_for :building, reject_if: :all_blank
 
   before_create :set_building
 
@@ -30,6 +31,9 @@ class UserBuilding < ActiveRecord::Base
     def set_building
       unless building_id.present?
         self.building = Building.where(city: city, street: street, number: building_number).first_or_create
+        if num_of_facilities.present? && full_building_square.present?
+          building.update num_of_facilities: num_of_facilities, full_building_square: full_building_square
+        end
       end
     end
 

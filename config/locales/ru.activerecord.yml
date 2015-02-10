@@ -27,3 +27,9 @@ ru:
         date_of_issue: Дата выдачи
         certificate: Свидетельство о собственности
         is_submitted: Подтверждено
+        num_of_facilities: Количество помещений в доме
+        full_building_square: Общая площадь
+
+      building:
+        num_of_facilities: Количество помещений в доме
+        full_building_square: Общая площадь
