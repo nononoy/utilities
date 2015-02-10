@@ -37,7 +37,7 @@ gem 'capistrano-bundler'
 gem 'capistrano-rails'
 gem 'capistrano-rvm'
 gem 'capistrano3-puma'
-
+# gem 'rails-i18n'
 
 # gem 'capistrano-rails', group: :development
 

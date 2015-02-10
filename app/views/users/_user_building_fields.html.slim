@@ -8,7 +8,7 @@
   = f.input :address, as: :hidden, input_html: { class: 'js-address' }
   = f.input :series
   = f.input :number
-  = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y") }
+  = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date' }
   = f.input :certificate
   - if f.object.certificate.present?
     .form-group

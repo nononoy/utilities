@@ -16,8 +16,3 @@ ru:
         date_of_issue: Дата выдачи
         certificate: Свидетельство о собственности
         is_submitted: Подтверждено
-  date:
-    order:
-      - :day
-      - :month
-      - :year
