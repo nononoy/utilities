@@ -30,7 +30,13 @@ br
     .col-md-6
       = f.input :notify_all, label: 'Сделать рассылку всем собственникам'
 
+  #voting_questions
+    = f.simple_fields_for :voting_questions do |voting_question|
+      = render 'voting_question_fields', f: voting_question
+    .links
+      = link_to_add_association 'добавить вопрос', f, :voting_questions
   .clearfix
+
   = f.input :is_published
   .form-group
     .panel.panel-default
