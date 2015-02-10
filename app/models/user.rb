@@ -33,4 +33,8 @@ class User < ActiveRecord::Base
     status == 'management_company'
   end
 
+  def has_building?
+    user_buildings.any?
+  end
+
 end

@@ -23,5 +23,6 @@ div role="tabpanel"
         = render partial: 'votings/voting', collection: @closed_votings
 
 
-.pull-right
-  = link_to 'Добавить вопрос для голосования', new_voting_path
+-if current_user.has_building?
+  .pull-right
+    = link_to 'Добавить вопрос для голосования', new_voting_path
