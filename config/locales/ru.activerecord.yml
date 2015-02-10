@@ -5,6 +5,17 @@ ru:
         email: E-mail
         password: Пароль
         password_confirmation: Подтверждение пароля
+        document_type: Тип документа
+        series: Серия
+        number: Номер
+        date_of_issue: Дата выдачи
+        country_of_issue: Страна выдачи
+        issuing_authority: Кем выдано
+        type_of_organization: Организационно-правовая форма
+        org_full_name: Наименование
+        org_ogrn: ОГРН
+        org_inn: ИНН
+
       user_building:
         city: Город
         street: Улица

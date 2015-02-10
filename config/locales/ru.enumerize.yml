@@ -5,3 +5,13 @@ ru:
         individual: 'Физическое лицо'
         legal: 'Юридическое лицо'
         management_company: 'Управляющая компания'
+      type_of_organization:
+        ao: АО
+        ooo: ООО
+        odo: ОДО
+      document_type:
+        russian_passport: Паспорт гражданина РФ
+        foreign_passport: Загран паспорт гражданина РФ
+        residence_permit_of_foreign_citizen: Вид на жительство иностранного гражданина в РФ
+        residence_permit_stateless_persons: Вид на жительство лица без гражданства в РФ
+        birth_certificate: Свидетельство о рождении

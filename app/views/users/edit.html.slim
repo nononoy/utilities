@@ -15,4 +15,8 @@ div role="tabpanel"
       #home.tab-pane.active
         == render 'form', f: f
       #info.tab-pane
-        'info
+        == render partial: "users/tabs/#{current_user.status}", locals: { f: f }
+    .form-group
+      label.col-sm-3.control-label
+      .col-sm-9
+        = f.button :submit, "#{current_user ? 'Сохранить' : 'Зарегистрироваться'}", class: 'btn btn-success'
