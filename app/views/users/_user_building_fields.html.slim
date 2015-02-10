@@ -6,5 +6,14 @@
   = f.input :apartment
   = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %"
   = f.input :address, as: :hidden, input_html: { class: 'js-address' }
+  = f.input :series
+  = f.input :number
+  = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y") }
+  = f.input :certificate
+  - if f.object.certificate.present?
+    .form-group
+      .col-sm-3.control-label
+      .col-sm-9
+        .pull-left= image_tag f.object.certificate.url, width: 300
   = link_to_remove_association "удалить адрес", f
   .clearfix

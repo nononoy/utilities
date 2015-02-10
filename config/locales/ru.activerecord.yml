@@ -11,3 +11,13 @@ ru:
         building_number: Дом
         apartment: Квартира
         share: Доля
+        series: Серия
+        number: Номер
+        date_of_issue: Дата выдачи
+        certificate: Свидетельство о собственности
+        is_submitted: Подтверждено
+  date:
+    order:
+      - :day
+      - :month
+      - :year
