@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210133503) do
+ActiveRecord::Schema.define(version: 20150213150016) do
+
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "attachable_id",   limit: 4
+    t.string   "attachable_type", limit: 255
+    t.string   "file",            limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  add_index "attachments", ["attachable_type", "attachable_id"], name: "index_attachments_on_attachable_type_and_attachable_id", using: :btree
 
   create_table "buildings", force: :cascade do |t|
     t.string   "city",                 limit: 255

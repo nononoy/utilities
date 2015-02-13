@@ -23,12 +23,8 @@ br
     .form-group
       label for="voting_end_at" по
       = f.text_field :end_at, class: 'datetime form-control'
-  br
-  .row
-    .col-md-6
-      = f.input :attachment, label: false
-    .col-md-6
-      = f.input :notify_all, label: 'Сделать рассылку всем собственникам'
+
+  = f.input :notify_all, label: 'Сделать рассылку всем собственникам'
 
   #voting_questions
     = f.simple_fields_for :voting_questions do |voting_question|
