@@ -70,7 +70,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:email, :password, :password_confirmation, :status, :document_type,
         :series, :number, :date_of_issue, :country_of_issue, :issuing_authority, :type_of_organization, :org_full_name, :org_ogrn,:org_inn,
         user_buildings_attributes: [:id, :city, :street, :building_number, :apartment, :series,
-          :number, :date_of_issue, :certificate, :share, :address, :_destroy,
+          :number, :date_of_issue, :certificate, :share, :facility_square, :address, :_destroy,
           :num_of_facilities, :full_building_square,
           building_attributes: [ :id, :num_of_facilities, :full_building_square ]
         ]

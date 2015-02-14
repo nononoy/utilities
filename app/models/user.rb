@@ -15,7 +15,11 @@ class User < ActiveRecord::Base
 
   has_many :user_buildings, dependent: :destroy
   has_many :buildings, -> {
-    select("buildings.*, user_buildings.apartment AS apartment, user_buildings.share AS share, user_buildings.address AS address")
+    select(%Q(buildings.*,
+      user_buildings.apartment AS apartment,
+      user_buildings.share AS share,
+      user_buildings.address AS address,
+      user_buildings.facility_square AS facility_square))
     }, through: :user_buildings
   has_many :building_votings, through: :user_buildings, source: :votings
 

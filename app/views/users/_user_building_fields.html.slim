@@ -6,6 +6,7 @@
     - unless current_user.is_management_company?
       = f.input :apartment
       = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %"
+      = f.input :facility_square
     = f.input :address, as: :hidden, input_html: { class: 'js-address' }
 
     - if current_user.is_management_company?

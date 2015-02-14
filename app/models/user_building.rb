@@ -4,6 +4,7 @@
 # t.datetime "updated_at",                                  null: false
 # t.integer  "apartment",     limit: 4
 # t.integer  "share",         limit: 4
+# t.integer  "facility_square"
 # t.text     "address",       limit: 65535
 # t.string   "series",        limit: 255
 # t.string   "number",        limit: 255
