@@ -6,7 +6,7 @@
           span.nmb № #{voting.id}
           span.ttl= voting.title
           span.period с #{voting.start_at.strftime("%d.%m.%Y")} по #{voting.end_at.strftime("%d.%m.%Y")}
-          span.rate за 56% против 12%
+          / span.rate за 56% против 12%
           - if print
             span.print распечатать
   .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
