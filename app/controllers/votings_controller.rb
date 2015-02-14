@@ -25,7 +25,6 @@ class VotingsController < ApplicationController
     @voting = Voting.find params[:id]
   end
 
-
   private
 
     def voting_params

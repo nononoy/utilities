@@ -17,10 +17,10 @@ div role="tabpanel"
   .tab-content
     #active.tab-pane.active role="tabpanel"
       #accordion.panel-group aria-multiselectable="true" role="tablist"
-        = render partial: 'votings/voting', collection: @active_votings
+        = render partial: 'votings/voting', collection: @active_votings, locals: { print: false }
     #closed.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
-        = render partial: 'votings/voting', collection: @closed_votings
+        = render partial: 'votings/voting', collection: @closed_votings, locals: { print: true }
 
 
 -if current_user.has_building?

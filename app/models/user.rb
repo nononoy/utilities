@@ -10,14 +10,14 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :votings, dependent: :destroy
-  has_many :user_votings, dependent: :destroy
+  has_many :user_voting_questions, dependent: :destroy
 
 
   has_many :user_buildings, dependent: :destroy
   has_many :buildings, -> {
     select("buildings.*, user_buildings.apartment AS apartment, user_buildings.share AS share, user_buildings.address AS address")
     }, through: :user_buildings
-  has_many :building_votings, through: :buildings, source: :votings
+  has_many :building_votings, through: :user_buildings, source: :votings
 
 
   accepts_nested_attributes_for :user_buildings, reject_if: :all_blank, allow_destroy: true
@@ -35,6 +35,11 @@ class User < ActiveRecord::Base
 
   def has_building?
     user_buildings.any?
+  end
+
+  def can_vote?(voting_question)
+    return true unless user_voting_questions.where(voting_question: voting_question).any?
+    user_voting_questions.where(voting_question: voting_question).refrained.any?
   end
 
   def apartments

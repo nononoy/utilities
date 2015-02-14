@@ -1,3 +1,6 @@
+# num_of_facilities
+# full_building_squar
+
 class Building < ActiveRecord::Base
 
   has_many :user_buildings, dependent: :destroy

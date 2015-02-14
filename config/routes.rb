@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
 
+  post '/voting_questions/:voting_question_id/accept'  => 'user_voting_questions#accept',  as: :accept_voting_question
+  post '/voting_questions/:voting_question_id/discard' => 'user_voting_questions#discard', as: :discard_voting_question
 
 
 

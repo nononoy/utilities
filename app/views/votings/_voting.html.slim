@@ -7,14 +7,14 @@
           span.ttl= voting.title
           span.period с #{voting.start_at.strftime("%d.%m.%Y")} по #{voting.end_at.strftime("%d.%m.%Y")}
           span.rate за 56% против 12%
-          span.print распечатать
+          - if print
+            span.print распечатать
   .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
     .panel-body
       .well= voting.description
-      h4 Собрания(#{voting.voting_questions.count}):
+      h4 Собрания:
       'Я, собственник кв. №#{get_appartments(@user_buildings, voting.building_id)} предлагаю:
       ol
-        - voting.voting_questions.each do |voting_question|
-          li== question_with_attachments(voting_question)
+        = render partial: "votings/voting_question", collection: voting.voting_questions
 
 
