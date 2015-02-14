@@ -16,8 +16,10 @@ class UserVotingQuestion < ActiveRecord::Base
 
 
   def refrained_voting_questions
-    voting_question_ids = voting.user_voting_questions.where(user_id: user_id).pluck :voting_question_id
-    VotingQuestion.where(id: voting_question_ids)
+    voting_question_ids = voting.user_voting_questions
+      .where(user_voting_questions: { user_id: user_id })
+      .pluck :voting_question_id
+    voting.voting_questions.where.not(id: voting_question_ids)
   end
 
 
@@ -26,6 +28,8 @@ class UserVotingQuestion < ActiveRecord::Base
     # то считается что он воздержался
     def set_refrain_questions
       return unless ["accept", "discard"].include?(vote)
+      puts "== refrained_voting_questions.count =="
+      puts refrained_voting_questions.count
       refrained_voting_questions.each do |voting_question|
         voting_question.user_voting_questions.create(user_id: user_id, vote: :refrain)
       end
