@@ -3,8 +3,9 @@ class VotingsController < ApplicationController
   def index
     @buildings = current_user.buildings.uniq
     @user_buildings = current_user.user_buildings.to_a
-    @active_votings = current_user.building_votings.active
-    @closed_votings = current_user.building_votings.closed
+    building_votings = current_user.building_votings.includes(voting_questions: :attachments)
+    @active_votings = building_votings.active.uniq
+    @closed_votings = building_votings.closed.uniq
   end
 
   def new

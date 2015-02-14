@@ -8,9 +8,6 @@ class VotingQuestion < ActiveRecord::Base
   belongs_to :voting
   has_many :attachments, as: :attachable
 
-  # attr_accessor :files
-
-
   def files=(files)
     files.each do |file|
       attachments.build(file: file) if file

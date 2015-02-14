@@ -11,5 +11,10 @@
   .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
     .panel-body
       .well= voting.description
-      'Я, собственник кв. №#{@user_buildings.find{ |ub| ub.building_id == voting.building_id }.apartment}, предлагаю #{voting.title}
+      h4 Собрания(#{voting.voting_questions.count}):
+      'Я, собственник кв. №#{get_appartments(@user_buildings, voting.building_id)} предлагаю:
+      ol
+        - voting.voting_questions.each do |voting_question|
+          li== question_with_attachments(voting_question)
+
 
