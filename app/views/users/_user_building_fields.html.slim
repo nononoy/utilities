@@ -1,19 +1,19 @@
 .nested-fields
   .well
-    = f.input :city, input_html: { class: 'js-city', value: (f.object.try(:city) || f.object.building.try(:city)) }
-    = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)) }
-    = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || f.object.building.try(:number)) }
+    = f.input :city, input_html: { class: 'js-city', value: (f.object.try(:city) || f.object.building.try(:city)) }, required: true
+    = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)) }, required: true
+    = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || f.object.building.try(:number)) }, required: true
     - unless current_user.is_management_company?
-      = f.input :apartment
-      = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %"
-      = f.input :facility_square
+      = f.input :apartment, required: true
+      = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %", required: true
+      = f.input :facility_square, required: true
     = f.input :address, as: :hidden, input_html: { class: 'js-address' }
 
     - if current_user.is_management_company?
       - if f.object.building
         = f.simple_fields_for :building do |ff|
-          = ff.input :num_of_facilities
-          = ff.input :full_building_square
+          = ff.input :num_of_facilities, required: true
+          = ff.input :full_building_square, required: true
       - else
         = f.input :num_of_facilities
         = f.input :full_building_square
@@ -22,10 +22,10 @@
         .panel-heading
           h3.panel-title Свидетельство о собственности
         .panel-body
-          = f.input :series
-          = f.input :number
-          = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date' }
-          = f.input :certificate, label: ' '
+          = f.input :series, required: true
+          = f.input :number, required: true
+          = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date' }, required: true
+          = f.input :certificate, label: ' ', required: !f.object.certificate.present?
           - if f.object.certificate.present?
             .form-group
               .col-sm-3.control-label

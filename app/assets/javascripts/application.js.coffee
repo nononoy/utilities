@@ -8,6 +8,7 @@
 #= require cocoon
 #= require users
 #= require votings
+#= require forms
 
 #= require turbolinks
 $(document).on "ready page:load", ->

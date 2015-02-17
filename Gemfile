@@ -18,6 +18,7 @@ gem "cocoon"
 gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
+gem 'jquery-validation-rails'
 
 gem "sorcery"
 gem 'simple_form'

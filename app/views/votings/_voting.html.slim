@@ -12,7 +12,7 @@
   .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
     .panel-body
       .well= voting.description
-      h4 Собрания:
+      h4 Вопросы, вынесенные на голосование:
       'Я, собственник кв. №#{get_appartments(@user_buildings, voting.building_id)} предлагаю:
       ol
         = render partial: "votings/voting_question", collection: voting.voting_questions
