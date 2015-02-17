@@ -6,6 +6,8 @@ div role="tabpanel"
       a aria-controls="home" data-toggle="tab" href="#home" role="tab" Объекты собственности
     li
       a aria-controls="info" data-toggle="tab" href="#info" role="tab" Информация о пользователе
+    li
+      a aria-controls="notify" data-toggle="tab" href="#notify" role="tab" Оповещения
 
   = simple_form_for @user, html: { class: 'form-horizontal js-form-address' },
       wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
@@ -16,6 +18,8 @@ div role="tabpanel"
         == render 'form', f: f
       #info.tab-pane
         == render partial: "users/tabs/#{current_user.status}", locals: { f: f }
+      #notify.tab-pane
+        == render partial: "users/tabs/notification", locals: { f: f }
     .form-group
       label.col-sm-3.control-label
       .col-sm-9
