@@ -50,4 +50,8 @@ class User < ActiveRecord::Base
     buildings.inject({}){ |hash, b| hash[b.id] ||= []; hash[b.id] << b.apartment; hash }
   end
 
+  def full_name
+    "#{surname} #{first_name} #{middle_name}"
+  end
+
 end

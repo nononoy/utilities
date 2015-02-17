@@ -1,4 +1,4 @@
 .nested-fields
   = f.input :description, input_html: { placeholder: 'Напишите вопрос, выносимый на голосование' }, label: false
-  = f.input :files, as: :file, input_html: { multiple: :multiple }
+  = f.input :files, as: :file, input_html: { multiple: :multiple }, label: false
   = link_to_remove_association "удалить вопрос", f

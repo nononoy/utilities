@@ -2,6 +2,9 @@ ru:
   activerecord:
     attributes:
       user:
+        first_name: Имя
+        surname: Фамилия
+        middle_name: Отчество
         email: E-mail
         password: Пароль
         password_confirmation: Подтверждение пароля
@@ -34,3 +37,6 @@ ru:
       building:
         num_of_facilities: Количество помещений в доме
         full_building_square: Общая площадь
+
+      voting:
+        building_id: Дом

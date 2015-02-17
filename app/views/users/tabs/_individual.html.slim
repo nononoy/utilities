@@ -3,6 +3,9 @@ br
   .panel-heading
     h3.panel-title Документ, удостоверяющий личность собственника
   .panel-body
+    = f.input :first_name
+    = f.input :surname
+    = f.input :middle_name
     = f.input :document_type, prompt: false
     = f.input :series
     = f.input :number
