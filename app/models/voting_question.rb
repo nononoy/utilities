@@ -20,6 +20,10 @@ class VotingQuestion < ActiveRecord::Base
     end
   end
 
+  def is_calculated?
+    accepted_percent.present? && discarded_percent.present? && refrained_percent.present?
+  end
+
   def update_voting_percent!
     update(
       accepted_percent: user_voting_questions.accepted.sum(:percent),
