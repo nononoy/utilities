@@ -47,7 +47,7 @@ class UserVotingQuestion < ActiveRecord::Base
         user_building_square = user_building.facility_square
         # доля квартиры
         user_building_share  = user_building.share
-        result += (user_building_share / 100) * (user_building_square/full_building_square.to_f)
+        result += (user_building_share / 100.0) * (user_building_square/full_building_square.to_f)
       end
       result *= 100
       update(percent: result)
