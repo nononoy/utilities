@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220065722) do
+ActiveRecord::Schema.define(version: 20150220070516) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -110,10 +110,13 @@ ActiveRecord::Schema.define(version: 20150220065722) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", using: :btree
 
   create_table "voting_questions", force: :cascade do |t|
-    t.integer  "voting_id",   limit: 4
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "voting_id",         limit: 4
+    t.text     "description",       limit: 65535
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
+    t.decimal  "accepted_percent",                precision: 5, scale: 4
+    t.decimal  "discarded_percent",               precision: 5, scale: 4
+    t.decimal  "refrained_percent",               precision: 5, scale: 4
   end
 
   add_index "voting_questions", ["voting_id"], name: "index_voting_questions_on_voting_id", using: :btree

@@ -15,6 +15,6 @@
       h4 Вопросы, вынесенные на голосование:
       'Я, собственник кв. №#{get_appartments(@user_buildings, voting.building_id)} предлагаю:
       ol
-        = render partial: "votings/voting_question", collection: voting.voting_questions
+        = render partial: "votings/voting_question", collection: voting.voting_questions, locals: { closed_flag: voting.is_closed? }
 
 

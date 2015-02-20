@@ -34,6 +34,16 @@ class Voting < ActiveRecord::Base
 
   before_create :set_end_at
 
+  def Voting.calculate_closed!
+    VotingQuestion.joins(:voting).uncalculated.merge(Voting.closed).each do |voting_question|
+      voting_question.update_voting_percent!
+    end
+  end
+
+  def is_closed?
+    end_at < Time.now.utc
+  end
+
   private
     def set_end_at
       # self.start_at = start_at.utc

@@ -15,3 +15,12 @@ $(document)
       url: href
       success: (data, e) ->
         $wrapper.replaceWith data
+
+  .on 'click', '.js-discard-question', (e) ->
+    href = $(@).data "href"
+    $wrapper = $(@).closest('.vote-wrapper')
+    $.ajax
+      method: 'POST'
+      url: href
+      success: (data, e) ->
+        $wrapper.replaceWith data

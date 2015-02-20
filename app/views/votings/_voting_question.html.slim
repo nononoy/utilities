@@ -1,5 +1,5 @@
 li
-  == question_with_attachments(voting_question)
+  == question_with_attachments(voting_question, closed_flag)
   - unless current_user.can_vote?(voting_question)
     = render partial: 'votings/already_vote'
   -else
