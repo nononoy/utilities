@@ -1,5 +1,5 @@
 # num_of_facilities
-# full_building_squar
+# full_building_square
 
 class Building < ActiveRecord::Base
 

@@ -7,7 +7,7 @@ class VotingQuestion < ActiveRecord::Base
 
   belongs_to :voting
   has_one :building, through: :voting
-  has_many :attachments, as: :attachable
+  has_many :attachments, as: :attachable, dependent: :destroy
   has_many :user_voting_questions, dependent: :destroy
 
   def files=(files)
