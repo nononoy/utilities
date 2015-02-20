@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
   end
 
   def has_building?
-    user_buildings.any?
+    # user_buildings.any?
+    buildings.where.not(full_building_square: nil).any?
   end
 
   def can_vote?(voting_question)
