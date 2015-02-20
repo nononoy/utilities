@@ -19,6 +19,7 @@ gem "therubyracer"
 gem "less-rails"
 gem "twitter-bootstrap-rails"
 gem 'jquery-validation-rails'
+gem 'jquery-colorbox-rails'
 
 gem "sorcery"
 gem 'simple_form'

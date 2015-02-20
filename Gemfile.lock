@@ -93,6 +93,8 @@ GEM
     jbuilder (2.2.6)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-colorbox-rails (0.2.2)
+      railties (>= 3.1, <= 5.0)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -250,6 +252,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   enumerize
   jbuilder (~> 2.0)
+  jquery-colorbox-rails
   jquery-rails
   jquery-validation-rails
   less-rails

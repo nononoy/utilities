@@ -30,7 +30,9 @@
             .form-group
               .col-sm-3.control-label
               .col-sm-9
-                .pull-left= image_tag f.object.certificate.url, width: 300
+                .pull-left
+                  a.colorbox href=f.object.certificate.url
+                    = image_tag f.object.certificate.url, width: 300
 
 
     = link_to_remove_association "удалить адрес", f

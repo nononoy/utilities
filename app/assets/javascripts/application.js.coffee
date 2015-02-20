@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery.colorbox
 #= require twitter/bootstrap
 #= require bootstrap
 
@@ -14,3 +15,5 @@
 $(document).on "ready page:load", ->
   $('.date').mask '99.99.9999', placeholder: 'дд.мм.гггг'
   $('.datetime').mask '99.99.9999 99:99', placeholder: 'дд.мм.гггг чч:мм'
+  $('.colorbox').colorbox
+    maxWidth: $( window ).width()
