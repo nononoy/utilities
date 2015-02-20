@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require jquery.colorbox
+#= require jquery.colorbox.turbolinks
 #= require twitter/bootstrap
 #= require bootstrap
 
