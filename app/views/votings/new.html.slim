@@ -3,10 +3,10 @@ h2 Объявить собрание
 br
 br
 = simple_form_for @voting, html: { class: 'form-horizontal' } do |f|
-  = f.input :building_id, collection: current_user.buildings.with_square.uniq.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false
-  = f.input :title, label: false, input_html: { placeholder: 'Впишите заголовок(не более трех слов)' }
+  = f.input :building_id, collection: current_user.buildings.with_square.uniq.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false, required: true
+  = f.input :title, label: false, input_html: { placeholder: 'Впишите заголовок(не более трех слов)' }, required: true
   = f.input :user_id, as: :hidden
-  = f.input :description, input_html: { placeholder: 'Опишите причину, почему вы предлагаете свой вопрос или прочитайте инструкцию, нажав на кнопку сто знаком вопроса (?)', rows: 6 }, label: false
+  = f.input :description, input_html: { placeholder: 'Опишите причину, почему вы предлагаете свой вопрос или прочитайте инструкцию, нажав на кнопку сто знаком вопроса (?)', rows: 6 }, label: false, required: true
   p
     'Исходя из этого, я, #{current_user.full_name}, собственник кв. №
     span.js-apartment= current_user.apartments.values.first.join(", ")
@@ -19,11 +19,11 @@ br
 
     .form-group
       label for="voting_start_at" с
-      = f.text_field :start_at,  class: 'date form-control'
+      = f.text_field :start_at,  class: 'date form-control', required: true
 
     .form-group
       label for="voting_end_at" по
-      = f.text_field :end_at, class: 'datetime form-control'
+      = f.text_field :end_at, class: 'datetime form-control', required: true
 
   = f.input :notify_all, label: 'Сделать рассылку всем собственникам'
 
