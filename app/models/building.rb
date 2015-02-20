@@ -8,6 +8,8 @@ class Building < ActiveRecord::Base
 
   has_many :votings, dependent: :destroy
 
+  scope :with_square, -> { where.not(full_building_square: nil) }
+
   def short_address
     "#{city}, #{street}, #{number}"
   end

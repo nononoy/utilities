@@ -3,7 +3,7 @@ h2 Объявить собрание
 br
 br
 = simple_form_for @voting, html: { class: 'form-horizontal' } do |f|
-  = f.input :building_id, collection: current_user.buildings.uniq.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false
+  = f.input :building_id, collection: current_user.buildings.with_square.uniq.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false
   = f.input :title, label: false, input_html: { placeholder: 'Впишите заголовок(не более трех слов)' }
   = f.input :user_id, as: :hidden
   = f.input :description, input_html: { placeholder: 'Опишите причину, почему вы предлагаете свой вопрос или прочитайте инструкцию, нажав на кнопку сто знаком вопроса (?)', rows: 6 }, label: false
