@@ -2,17 +2,14 @@ li
   == question_with_attachments(voting_question, closed_flag)
   - unless current_user.can_vote?(voting_question)
     = render partial: 'votings/already_vote'
-  -else
-    - if closed_flag
-      'Голосование закончено
-    -else
-      .vote-wrapper
-        h4.centered.text-danger
-          'Вы еще не голосовали по этому вопросу?
-          br
-          'Нажмите на кнопку, которая соответствует вашему решению
-        .row
-          .col-md-6.centered
-            = link_to 'За', 'javascript:;', class: 'js-accept-question btn btn-default', data: { href: accept_voting_question_path(voting_question) }
-          .col-md-6.centered
-            = link_to 'Против', 'javascript:;', class: 'js-discard-question btn btn-default', data: { href: discard_voting_question_path(voting_question) }
+  -elsif !closed_flag
+    .vote-wrapper
+      h4.centered.text-danger
+        'Вы еще не голосовали по этому вопросу?
+        br
+        'Нажмите на кнопку, которая соответствует вашему решению
+      .row
+        .col-md-6.centered
+          = link_to 'За', 'javascript:;', class: 'js-accept-question btn btn-default', data: { href: accept_voting_question_path(voting_question) }
+        .col-md-6.centered
+          = link_to 'Против', 'javascript:;', class: 'js-discard-question btn btn-default', data: { href: discard_voting_question_path(voting_question) }
