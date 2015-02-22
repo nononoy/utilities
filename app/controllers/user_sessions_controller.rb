@@ -7,7 +7,6 @@ class UserSessionsController < ApplicationController
   def create
     if @user = login(params[:email], params[:password], params[:remember_me])
       redirect_back_or_to(:votings_path, notice: 'Успешный вход!')
-      # redirect_to votings_path, notice: 'Успешный вход!'
     else
       flash.now[:alert] = 'Проблемы авторизации'
       render action: 'new'
