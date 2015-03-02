@@ -21,6 +21,7 @@ class Voting < ActiveRecord::Base
 
   has_many :voting_questions, dependent: :destroy
   has_many :user_voting_questions, through: :voting_questions
+  has_many :users,-> { uniq }, through: :user_voting_questions
 
   accepts_nested_attributes_for :voting_questions, reject_if: :all_blank, allow_destroy: true
 
@@ -31,8 +32,9 @@ class Voting < ActiveRecord::Base
 
   scope :active, -> { where("votings.end_at >= ?", Time.now.utc) }
 
-
   before_create :set_end_at
+
+  delegate :short_address, to: :building
 
   def Voting.calculate_closed!
     VotingQuestion.joins(:voting).uncalculated.merge(Voting.closed).each do |voting_question|

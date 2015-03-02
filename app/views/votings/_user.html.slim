@@ -1,0 +1,55 @@
+p.centered
+  'Общее собрание собственников помещений многоквартирного дома
+  br
+  '#{dt(@voting.end_at)}г., г. Владимир, #{@voting.end_at.localtime.strftime("%H")} часов #{@voting.end_at.strftime("%M")} мин.
+  br
+  'по адресу #{@voting.short_address}
+  br
+  'Собственник помещения (ФИО)
+  ins= user.full_name
+  br
+  'Документ, удостоверяющий личность: паспорт серия #{user.series} No #{user.number}, от #{dt(user.date_of_issue)} г.
+  br
+  'выдан #{user.issuing_authority}
+  br
+  - user_building = user.user_buildings_by_building(@building)
+  'Документ на право собственности: свидетельство серия #{user_building.series} No #{user_building.number}, от #{dt(user_building.date_of_issue)} г.
+  / br
+  / '_________________________________________________________________________________________
+  br
+  'Площадь принадлежащего собственнику помещения (кв.м.) #{user_building.facility_square}
+  br
+  'Общая полезная площадь многоквартирного дома (кв.м.) #{@building.full_building_square}
+  br
+  'Доля в праве на общее имущество в многоквартирном доме, принадлежащая Собственнику (%) #{user_building.share}
+  br
+  'Бюллетень для голосования по вопросам повестки дня
+  br
+  'Общего собрания собственников помещений многоквартирного дома
+  br
+  'РЕШЕНИЕ СОБСТВЕННИКА кв. No #{user_building.apartment}
+  br
+  'по адресу #{@voting.short_address}
+  br
+  'Голосование по вопросам, выносимым на повестку дня Общего собрания собственников
+  br
+  '(в графе выбранного ответа поставить знак V ).
+table.table.table-bordered
+  thead
+    tr
+      th №
+      th Вопрос
+      th style='width: 50px;' ЗА
+      th style='width: 50px;' ПРОТИВ
+      th style='width: 50px;' ВОЗДЕРЖАЛСЯ
+  tbody
+    - @voting_questions.each_with_index do |voting_question, index|
+      tr
+        td colspan=5 = "#{index+1}. #{voting_question.description}"
+      tr
+        td= index + 1
+        td= voting_question.description
+        td.centered= 'V' if voting_question.user_voting_questions.by_user(user).first.vote == "accept"
+        td.centered= 'V' if voting_question.user_voting_questions.by_user(user).first.vote == "discard"
+        td.centered= 'V' if voting_question.user_voting_questions.by_user(user).first.vote == "refrain"
+

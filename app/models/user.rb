@@ -55,4 +55,9 @@ class User < ActiveRecord::Base
     "#{surname} #{first_name} #{middle_name}"
   end
 
+  def user_buildings_by_building(building)
+    building_id = building.kind_of?(Building) ? building.id : building
+    user_buildings.where(building_id: building_id).first
+  end
+
 end

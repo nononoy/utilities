@@ -8,12 +8,21 @@ class UserVotingQuestion < ActiveRecord::Base
   scope :accepted, -> { where(vote: 1) }
   scope :discarded, -> { where(vote: 2) }
   scope :refrained, -> { where(vote: 3) }
+  scope :by_user, -> (user){ where(user_id: (user.kind_of?(User) ? user.id : user)) }
 
   enumerize :vote, in: { accept: 1, discard: 2, refrain: 3 }
 
-
   after_update :set_refrain_questions
   after_create :calculate_percent
+
+
+
+  delegate :full_name, to: :user
+  delegate :series, to: :user
+  delegate :number, to: :user
+  delegate :date_of_issue, to: :user
+  delegate :country_of_issue, to: :user
+  delegate :issuing_authority, to: :user
 
 
   def refrained_voting_questions
@@ -22,7 +31,6 @@ class UserVotingQuestion < ActiveRecord::Base
       .pluck :voting_question_id
     voting.voting_questions.where.not(id: voting_question_ids)
   end
-
 
   private
     # если собственник проголосовал по одному вопросу из собрания, но не проглосовал по другому,

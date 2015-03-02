@@ -8,4 +8,8 @@ module ApplicationHelper
     end
   end
 
+  def dt(date)
+    date.try(:strftime, "%d.%m.%Y")
+  end
+
 end

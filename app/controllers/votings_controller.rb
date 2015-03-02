@@ -23,6 +23,8 @@ class VotingsController < ApplicationController
 
   def show
     @voting = Voting.find params[:id]
+    @building = @voting.building
+    @voting_questions = @voting.voting_questions.uniq
   end
 
   private
