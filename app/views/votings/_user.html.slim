@@ -53,3 +53,15 @@ table.table.table-bordered
         td.centered= 'V' if voting_question.user_voting_questions.by_user(user).first.vote == "discard"
         td.centered= 'V' if voting_question.user_voting_questions.by_user(user).first.vote == "refrain"
 
+p
+  table.pull-right
+    tr
+      td Собственник помещения (кв. #{user.apartments[@building.id].join(", ")} )
+      td _______________________/
+      td _________________________/
+
+    tr
+      td
+      td.text-right= '(подпись)'
+      td.text-right= '(Ф.И.О.)'
+hr
