@@ -10,6 +10,7 @@ set :repo_url, 'git@github.com:nedoshel/utilities.git'
 set :deploy_to, '/home/deploy/utilities'
 
 set :rvm_type, :user
+set :rvm_ruby_version, '2.2.0'
 
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
