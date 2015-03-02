@@ -33,6 +33,7 @@ gem 'mini_magick'
 gem 'carrierwave'
 
 gem 'enumerize'
+gem 'russian'
 
 gem 'capistrano', '~> 3.2.0'
 gem 'capistrano-bundler'

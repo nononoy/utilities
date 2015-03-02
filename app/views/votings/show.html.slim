@@ -1,16 +1,17 @@
-h2.centered Уведомление
-h4
-  '#{@voting.end_at.strftime("%d.%m.%Y")}г. в #{@voting.end_at.localtime.strftime("%H.%M")} состоится общее собрание собственников помещений дома №#{@building.number} по #{@building.street} в форме очного голосования по следующей повестке дня:
-p
-  ol
-    - @voting_questions.each do |voting_question|
-      li= "#{voting_question.description}."
-table.table.table-bordered
-  tr
-    td Что тут за фамилия?
-    td 8-(000)-000-00-00
-  tr
-    td Что тут за фамилия?
-    td 8-(000)-000-00-00
-= render partial: "votings/user", collection: @voting.users
+.a4
+  h2.centered Уведомление
+  h4
+    '#{@voting.end_at.strftime("%d.%m.%Y")}г. в #{@voting.end_at.localtime.strftime("%H.%M")} состоится общее собрание собственников помещений дома №#{@building.number} по #{@building.street} в форме очного голосования по следующей повестке дня:
+  p
+    ol
+      - @voting_questions.each do |voting_question|
+        li= "#{voting_question.description}."
+  table.table.table-bordered
+    tr
+      td Что тут за фамилия?
+      td 8-(000)-000-00-00
+    tr
+      td Что тут за фамилия?
+      td 8-(000)-000-00-00
+  = render partial: "votings/user", collection: @voting.users
 
