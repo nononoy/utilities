@@ -12,4 +12,8 @@ module ApplicationHelper
     date.try(:strftime, "%d.%m.%Y")
   end
 
+  def round_percent(percent)
+    (percent * 100).round
+  end
+
 end

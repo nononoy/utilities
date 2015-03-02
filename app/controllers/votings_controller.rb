@@ -25,6 +25,8 @@ class VotingsController < ApplicationController
     @voting = Voting.find params[:id]
     @building = @voting.building
     @voting_questions = @voting.voting_questions.uniq
+    @participated_square = @voting.user_buildings.pluck(:facility_square).inject(:+)
+
   end
 
   private

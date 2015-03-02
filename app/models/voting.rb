@@ -42,6 +42,10 @@ class Voting < ActiveRecord::Base
     end
   end
 
+  def user_buildings
+    building.user_buildings.joins(:user).merge(users).uniq
+  end
+
   def is_closed?
     end_at < Time.now.utc
   end

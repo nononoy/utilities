@@ -26,7 +26,12 @@ class UserBuilding < ActiveRecord::Base
 
   before_create :set_building
 
+  scope :with_apartment, -> { where.not(apartment: nil) }
   scope :by_building, -> (building) { where(building: building) }
+
+  def certificate_details
+    "#{series} #{number} #{date_of_issue.try(:strftime, "%d.%m.%Y")}"
+  end
 
   private
 
