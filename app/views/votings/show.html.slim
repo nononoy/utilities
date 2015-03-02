@@ -160,7 +160,7 @@
         th Подпись собственника
         th Примечание
     tbody
-      - @building.user_buildings.with_apartment.each do |user_building|
+      - @user_buildings.with_apartment.each do |user_building|
         tr
           td= user_building.apartment
           td= user_building.user.full_name

@@ -13,7 +13,8 @@ module ApplicationHelper
   end
 
   def round_percent(percent)
-    (percent * 100).round
+    # (percent * 100).round
+    percent
   end
 
 end
