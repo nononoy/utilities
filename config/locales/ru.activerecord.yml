@@ -6,6 +6,7 @@ ru:
         surname: Фамилия
         middle_name: Отчество
         email: E-mail
+        phone: Телефон
         password: Пароль
         password_confirmation: Подтверждение пароля
         document_type: Тип документа

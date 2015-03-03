@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150220070516) do
+ActiveRecord::Schema.define(version: 20150303175121) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150220070516) do
     t.string   "surname",                         limit: 255
     t.string   "middle_name",                     limit: 255
     t.string   "email",                           limit: 255,                  null: false
+    t.string   "phone",                           limit: 255
     t.string   "crypted_password",                limit: 255
     t.string   "salt",                            limit: 255
     t.datetime "created_at"
