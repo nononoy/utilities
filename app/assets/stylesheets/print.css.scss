@@ -3,3 +3,30 @@
     page-break-after: always;
   }
 }
+
+.owner {
+  height: 23px;
+  width: 98%;
+  margin: 5px auto;
+  border-bottom: 1px solid;
+  .underline {
+    height: 100%;
+    width: 60%;
+  }
+  .text {
+    position: relative;
+    height: 100%;
+    width: 40%;
+    .txt {
+      display: inline-block;
+      position: absolute;
+      top: 4px;
+    }
+    .txt:last-child {
+      right: 0;
+    }
+    .underline {
+      display: inline-block;
+    }
+  }
+}

@@ -46,8 +46,6 @@
     tbody
       - @voting_questions.each_with_index do |voting_question, index|
         tr
-          td colspan=5 = "#{index+1}. #{voting_question.description}"
-        tr
           td= index + 1
           td= voting_question.description
           td.centered= 'V' if voting_question.user_voting_questions.by_user(user).first.vote == "accept"
