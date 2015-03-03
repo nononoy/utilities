@@ -13,16 +13,16 @@
     br
     'выдан #{user.issuing_authority}
     br
-    - user_building = user.user_buildings_by_building(@building)
-    'Документ на право собственности: свидетельство серия #{user_building.series} No #{user_building.number}, от #{dt(user_building.date_of_issue)} г.
-    / br
-    / '_________________________________________________________________________________________
-    br
-    'Площадь принадлежащего собственнику помещения (кв.м.) #{user_building.facility_square}
-    br
+    - user_share = 0.0
+    - user.user_buildings_by_building(@building).each do |user_building|
+      - user_share += ((user_building.facility_square / @building.full_building_square.to_f) * 100)/100 * user_building.share.to_f
+      'Документ на право собственности: свидетельство серия #{user_building.series} No #{user_building.number}, от #{dt(user_building.date_of_issue)} г.
+      br
+      'Площадь принадлежащего собственнику помещения (кв.м.) #{user_building.facility_square}
+      br
     'Общая полезная площадь многоквартирного дома (кв.м.) #{@building.full_building_square}
     br
-    'Доля в праве на общее имущество в многоквартирном доме, принадлежащая Собственнику (%) #{user_building.share}
+    'Доля в праве на общее имущество в многоквартирном доме, принадлежащая Собственнику (%) #{user_share}
     br
     'Бюллетень для голосования по вопросам повестки дня
     br

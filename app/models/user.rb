@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
 
   def user_buildings_by_building(building)
     building_id = building.kind_of?(Building) ? building.id : building
-    user_buildings.where(building_id: building_id).first
+    user_buildings.where(building_id: building_id)
   end
 
 end
