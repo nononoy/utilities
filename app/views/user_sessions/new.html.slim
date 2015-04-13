@@ -1,7 +1,7 @@
 h1 Создан, чтобы решать
 
 .row
-  .col-md-6
+  .col-md-5
     .well.well-lg
       = form_tag user_sessions_path, method: :post, class: 'form-horizontal' do
         .form-group
@@ -22,10 +22,11 @@ h1 Создан, чтобы решать
           .col-sm-offset-2.col-sm-10
 
             button.btn.btn-warning.width100 type="submit"  Вход
-  .col-md-6
     .well.well-lg
       .centered
         h2 Если Вы хотите зарегистрироваться
         = link_to 'Регистрация', new_user_path
+  .col-md-7
+    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "383", :src => "https://www.youtube.com/embed/B0svxwHhpLQ", :width => "682"}
 
 / = link_to 'Back', user_sessions_path
