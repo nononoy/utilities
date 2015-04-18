@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   post '/voting_questions/:voting_question_id/accept'  => 'user_voting_questions#accept',  as: :accept_voting_question
   post '/voting_questions/:voting_question_id/discard' => 'user_voting_questions#discard', as: :discard_voting_question
 
-
+  namespace :admin do
+    get '/' => 'users#index'
+    resources :users
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -23,6 +23,9 @@ gem 'jquery-colorbox-rails'
 
 gem "sorcery"
 gem 'simple_form'
+gem 'inherited_resources'
+gem "responders", '~> 2.0'
+gem 'will_paginate', '~> 3.0.6'
 
 gem 'puma'
 

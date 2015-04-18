@@ -61,4 +61,8 @@ class User < ActiveRecord::Base
     user_buildings.where(building_id: building_id)
   end
 
+  def is_admin?
+    true
+  end
+
 end

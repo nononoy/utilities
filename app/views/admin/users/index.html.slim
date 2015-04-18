@@ -1,0 +1,10 @@
+h2 Пользователи
+table.table.table-striped.table-bordered.table-hover
+  thead
+    tr
+      th  email
+      th
+  tbody
+    = render partial: 'admin/users/user', collection: collection
+.clearfix
+= will_paginate collection
