@@ -5,7 +5,7 @@
         .voting-title
           span.nmb № #{voting.id}
           span.ttl= voting.title
-          span.period с #{voting.start_at.strftime("%d.%m.%Y")} по #{voting.end_at.strftime("%d.%m.%Y")}
+          span.period с #{voting.start_at.strftime("%d.%m.%Y")} по #{voting.end_at.localtime.strftime("%d.%m.%Y %H:%M")}
           / span.rate за 56% против 12%
           - if print
             span= link_to 'распечатать', voting_path(voting), class: 'print pull-right'
