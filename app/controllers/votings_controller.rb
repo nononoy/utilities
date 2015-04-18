@@ -15,7 +15,7 @@ class VotingsController < ApplicationController
   def create
     @voting = Voting.new voting_params
     if @voting.save
-      redirect_to voting_path(@voting), notice: 'Голосование успешно создано'
+      redirect_to votings_path, notice: 'Голосование успешно создано'
     else
       render :new
     end
