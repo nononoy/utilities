@@ -2,7 +2,9 @@ h2 Пользователи
 table.table.table-striped.table-bordered.table-hover
   thead
     tr
-      th  email
+      th email
+      th Тип записи
+      th Количество помещений
       th
   tbody
     = render partial: 'admin/users/user', collection: collection
