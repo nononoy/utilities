@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def can_vote?(voting_question)
+    return false if status == "management_company"
     return true unless user_voting_questions.where(voting_question: voting_question).any?
     user_voting_questions.where(voting_question: voting_question).refrained.any?
   end

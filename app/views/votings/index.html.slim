@@ -23,6 +23,6 @@ div role="tabpanel"
         = render partial: 'votings/voting', collection: @closed_votings, locals: { print: true }
 
 
--if current_user.has_building?
+-if current_user.has_building? && current_user.status != 'management_company'
   .pull-right
     = link_to 'Провести собрание', new_voting_path

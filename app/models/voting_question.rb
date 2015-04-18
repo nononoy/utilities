@@ -33,9 +33,13 @@ class VotingQuestion < ActiveRecord::Base
   end
 
   def solution
-    return 'принято' if accepted_percent > discarded_percent
-    return 'отклонено' if discarded_percent > accepted_percent
-    'не состоялось'
+    if is_calculated?
+      return 'принято' if accepted_percent > discarded_percent
+      return 'отклонено' if discarded_percent > accepted_percent
+      'не состоялось'
+    else
+      ''
+    end
   end
 
 end

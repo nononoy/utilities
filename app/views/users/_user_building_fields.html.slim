@@ -1,8 +1,8 @@
 .nested-fields
   .well
-    = f.input :city, input_html: { class: 'js-city', value: (f.object.try(:city) || f.object.building.try(:city)) }, required: true
-    = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)) }, required: true
-    = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || f.object.building.try(:number)) }, required: true
+    = f.input :city, input_html: { class: 'js-city', value: (f.object.try(:city) || f.object.building.try(:city)), autocomplete: "off" }, required: true
+    = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)), autocomplete: "off" }, required: true
+    = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || f.object.building.try(:number)), autocomplete: "off" }, required: true
     - unless current_user.is_management_company?
       = f.input :apartment, required: true
       = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %", required: true
