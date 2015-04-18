@@ -4,6 +4,6 @@ class Admin::UsersController < AdminController
 
   protected
     def collection
-      get_collection_ivar || set_collection_ivar(end_of_association_chain.preload(:user_buildings).paginate(page: params[:page]))
+      get_collection_ivar || set_collection_ivar(end_of_association_chain.paginate(page: params[:page]))
     end
 end

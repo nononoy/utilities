@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Вы успешно зарегистрировались. в Течении нескольких минут на указанный Вами адрес придет письмо с дальнейшими иструкциями.' }
+        format.html { redirect_to login_path, notice: 'Вам на e-mail отправлен запрос на подтверждение. Войдите в свою электронную почту и завершите регистрацию своего псевдонима (профиля).' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
