@@ -16,6 +16,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:login_path, notice: 'Успешный выход!')
+    redirect_to login_path, notice: 'Успешный выход!'
   end
 end
