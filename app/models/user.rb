@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
   validates :email, uniqueness: true, presence: true
-  validates :agreement, format: { with: /1/i, on: :create }
+  validates :agreement, format: { with: /1/i, on: :create, message: 'Вы должны согласиться для продолжения работы' }
 
   has_many :votings, dependent: :destroy
   has_many :user_voting_questions, dependent: :destroy
