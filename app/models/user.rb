@@ -3,11 +3,13 @@ class User < ActiveRecord::Base
 
   authenticates_with_sorcery!
 
+  attr_accessor :agreement
 
   validates :password, length: { minimum: 4 }, on: :create
   validates :password, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, presence: true
+  validates :agreement, presence: true
 
   has_many :votings, dependent: :destroy
   has_many :user_voting_questions, dependent: :destroy
