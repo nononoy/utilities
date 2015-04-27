@@ -20,6 +20,7 @@ class UserMailer < ApplicationMailer
   def activation_success_email(user)
     @user = user
     @url  = "http://#{ActionMailer::Base.default_url_options[:host]}/login"
+    @profile_url = "http://#{ActionMailer::Base.default_url_options[:host]}/profile"
     mail(to: user.email, subject: "Ваш аккаунт на портале ЖКХ активирован")
   end
 end
