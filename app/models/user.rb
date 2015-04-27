@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
   has_many :votings, dependent: :destroy
   has_many :user_voting_questions, dependent: :destroy
 
-
   has_many :user_buildings, dependent: :destroy, counter_cache: true
   has_many :buildings, -> {
     select(%Q(buildings.*,
