@@ -85,7 +85,7 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     address: 'smtp.mail.ru',
-    domain:  'biz.mail.ru',
+    domain:  'sistemarosdom.ru',
     port:    465,
     user_name: 'noreply@sistemarosdom.ru',
     password:  'rosdom-ggogle.com',
