@@ -5,10 +5,12 @@ class AdminController < InheritedResources::Base
 
   self.responder = ApplicationResponder
   respond_to :html
-
+  skip_before_action :require_login, :set_mailer_host
   layout 'admin'
 
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
+
+
 
   # before_action :require_login
   # before_action :authenticate_admin
