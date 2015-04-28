@@ -78,17 +78,17 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.action_mailer.default_url_options = { host: '89.20.154.43' }
+  config.action_mailer.default_url_options = { host: 'sistemarosdom.ru' }
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.smtp_settings = {
-    address: 'smtp.yandex.ru',
-    domain:  'yandex.ru',
-    port:    25,
-    user_name: 'yakh33@yandex.ru',
-    password:  'ggogle.com',
+    address: 'smtp.mail.ru',
+    domain:  'biz.mail.ru',
+    port:    465,
+    user_name: 'noreply@sistemarosdom.ru',
+    password:  'rosdom-ggogle.com',
     authentication: :plain,
     enable_starttls_auto: true
   }
