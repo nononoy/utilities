@@ -14,13 +14,13 @@ class UserMailer < ApplicationMailer
   def activation_needed_email(user)
     @user = user
     @url  = "http://#{ActionMailer::Base.default_url_options[:host]}/users/#{user.activation_token}/activate"
-    mail(to: user.email, subject: "Активация учетной записи на портале ЖКХ")
+    mail(to: user.email, subject: "Активация учетной записи на портале ЖКХ", content_type: "text/html")
   end
 
   def activation_success_email(user)
     @user = user
     @url  = "http://#{ActionMailer::Base.default_url_options[:host]}/login"
     @profile_url = "http://#{ActionMailer::Base.default_url_options[:host]}/profile"
-    mail(to: user.email, subject: "Ваш аккаунт на портале ЖКХ активирован")
+    mail(to: user.email, subject: "Ваш аккаунт на портале ЖКХ активирован", content_type: "text/html")
   end
 end

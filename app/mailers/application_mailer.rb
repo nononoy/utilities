@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "noreply@sistemarosdom.ru", content_type: "text/html"
+  default from: "noreply@sistemarosdom.ru"
   layout 'mailer'
 end
