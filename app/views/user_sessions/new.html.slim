@@ -20,13 +20,14 @@ h1 Создан, чтобы решать
                 | Запомнить меня
         .form-group
           .col-sm-offset-2.col-sm-10
-
             button.btn.btn-warning.width100 type="submit"  Вход
+            br
+            = link_to 'Забыли пароль?', new_password_reset_path
     .well.well-lg
       .centered
         h2 Если Вы хотите зарегистрироваться
         = link_to 'Регистрация', new_user_path
   .col-md-7
-    iframe allowfullscreen="" frameborder="0" height="383" src="https://www.youtube.com/embed/B0svxwHhpLQ" width="100%" 
+    iframe allowfullscreen="" frameborder="0" height="383" src="https://www.youtube.com/embed/B0svxwHhpLQ" width="100%"
 
 / = link_to 'Back', user_sessions_path

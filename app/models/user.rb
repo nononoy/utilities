@@ -5,9 +5,12 @@ class User < ActiveRecord::Base
 
   attr_accessor :agreement
 
-  validates :password, length: { minimum: 4 }, on: :create
-  validates :password, confirmation: true, on: :create
-  validates :password_confirmation, presence: true, on: :create
+  # validates :password, length: { minimum: 4 }, confirmation: true, on: :create
+  # validates :password_confirmation, presence: true, if: '!password.nil?' #on: :create
+
+  validates :password,                presence: true, confirmation: true, length: { minimum: 4}, if: :password
+  validates :password_confirmation,   presence: true, if: '!password.nil?'
+
   validates :email, uniqueness: true, presence: true
   validates :agreement, format: { with: /1/i, on: :create, message: 'Вы должны согласиться для продолжения работы' }
 

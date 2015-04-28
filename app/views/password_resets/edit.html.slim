@@ -1,4 +1,4 @@
-h1 Choose a new password
+h1 Новый пароль
 = simple_form_for @user, url: password_reset_path(@token), html: { class: 'form-horizontal', method: :put } do |f|
   = f.input :email
   = f.input :password

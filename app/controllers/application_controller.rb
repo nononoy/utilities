@@ -1,11 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
-  before_action :require_login
-
-  before_action :set_mailer_host
-
-
+  before_action :require_login, :set_mailer_host
 
   private
     def not_authenticated

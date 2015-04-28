@@ -7,9 +7,12 @@ Rails.application.routes.draw do
       get :activate
     end
   end
+  resources :password_resets
+
   get '/profile' => 'users#edit', as: :profile
 
-  resources :password_resets
+
+
   resources :votings
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout

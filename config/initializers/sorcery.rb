@@ -355,13 +355,13 @@ Rails.application.config.sorcery.configure do |config|
     # how many seconds before the reset request expires. nil for never expires.
     # Default: `nil`
     #
-    # user.reset_password_expiration_period =
+    # user.reset_password_expiration_period = nil
 
 
     # hammering protection, how long in seconds to wait before allowing another email to be sent.
     # Default: `5 * 60`
     #
-    # user.reset_password_time_between_emails =
+    user.reset_password_time_between_emails = nil
 
 
     # -- brute_force_protection --
@@ -380,7 +380,7 @@ Rails.application.config.sorcery.configure do |config|
     # How many failed logins allowed.
     # Default: `50`
     #
-    user.consecutive_login_retries_amount_limit = 10
+    # user.consecutive_login_retries_amount_limit = 10
 
 
     # How long the user should be banned. in seconds. 0 for permanent.
