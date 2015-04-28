@@ -83,13 +83,23 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
 
+  # config.action_mailer.smtp_settings = {
+  #   address: 'smtp.mail.ru',
+  #   domain:  'sistemarosdom.ru',
+  #   port:    465,
+  #   user_name: 'noreply@sistemarosdom.ru',
+  #   password:  'rosdom-ggogle.com',
+  #   authentication: :plain,
+  #   enable_starttls_auto: true
+  # }
   config.action_mailer.smtp_settings = {
     address: 'smtp.mail.ru',
     domain:  'sistemarosdom.ru',
     port:    465,
     user_name: 'noreply@sistemarosdom.ru',
     password:  'rosdom-ggogle.com',
-    authentication: :plain,
+    authentication: :login,
+    tls: true,
     enable_starttls_auto: true
   }
 
