@@ -11,7 +11,7 @@ class Admin::BuildingsController < AdminController
 
   protected
     def collection
-      get_collection_ivar || set_collection_ivar(end_of_association_chain.order(full_building_square: :desc).paginate(page: params[:page]))
+      get_collection_ivar || set_collection_ivar(end_of_association_chain.order(full_building_square: :asc).paginate(page: params[:page]))
     end
 
     def permitted_params
