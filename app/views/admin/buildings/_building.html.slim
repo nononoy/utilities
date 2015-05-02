@@ -1,0 +1,6 @@
+tr
+  td= building.short_address
+  = simple_form_for [:admin, building], remote: true do |f|
+    td= f.input :num_of_facilities, label: false
+    td= f.input :full_building_square, label: false
+    td= f.button :submit, 'сохранить'

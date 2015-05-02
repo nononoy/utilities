@@ -1,0 +1,12 @@
+h2 Дома
+table.table.table-striped.table-bordered.table-hover
+  thead
+    tr
+      th Адрес
+      th= Building.human_attribute_name :num_of_facilities
+      th= Building.human_attribute_name :full_building_square
+      th
+  tbody
+    = render partial: 'admin/buildings/building', collection: collection
+.clearfix
+= will_paginate collection

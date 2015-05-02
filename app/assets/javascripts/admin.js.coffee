@@ -2,4 +2,5 @@
 #= require jquery_ujs
 #= require twitter/bootstrap
 #= require bootstrap
+#= require alerts
 

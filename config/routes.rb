@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/' => 'users#index'
     resources :users
+    resources :buildings
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
