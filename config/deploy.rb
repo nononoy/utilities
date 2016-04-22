@@ -4,7 +4,7 @@ lock '3.2.1'
 set :ssh_options, { forward_agent: true, port: 2224 }
 # set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :application, 'utilities'
-set :repo_url, 'git@github.com:nedoshel/utilities.git'
+set :repo_url, 'git@github.com:nononoy/utilities.git'
 
 
 set :deploy_to, '/home/deploy/utilities'
