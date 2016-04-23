@@ -9,8 +9,8 @@ set :repo_url, 'git@github.com:nononoy/utilities.git'
 
 set :deploy_to, '/home/deployer/utilities'
 
-set :rvm_type, :user
-set :rvm_ruby_version, '2.2.0'
+set :rvm_type, :system
+set :rvm_ruby_version, '2.3.0'
 
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
@@ -44,6 +44,12 @@ namespace :deploy do
   end
 
   desc 'Initial Deploy'
+  task :initial do
+    on roles(:app) do
+      before 'deploy:restart', 'puma:start'
+      invoke 'deploy'
+    end
+  end
 
   desc 'Restart application'
   task :restart do

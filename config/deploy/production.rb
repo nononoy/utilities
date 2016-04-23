@@ -15,7 +15,7 @@ role :db,  %w{194.58.102.49}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server '194.58.102.49', user: 'deploy', roles: %w{web app db}
+server '194.58.102.49', user: 'deployer', roles: %w{web app db}
 
 
 # Custom SSH Options
