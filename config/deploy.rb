@@ -1,13 +1,13 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
-set :ssh_options, { forward_agent: true, port: 2224 }
+set :ssh_options, { forward_agent: true, port: 22}
 # set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(~/.ssh/id_rsa.pub) }
 set :application, 'utilities'
 set :repo_url, 'git@github.com:nononoy/utilities.git'
 
 
-set :deploy_to, '/home/deploy/utilities'
+set :deploy_to, '/home/deployer/utilities'
 
 set :rvm_type, :user
 set :rvm_ruby_version, '2.2.0'
