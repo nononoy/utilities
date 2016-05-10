@@ -26,26 +26,64 @@ html lang="ru"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.navbar-brand href=root_url СистемаРосДом.ру
+          a.navbar-brand href=root_url СистемаРосДом.ру - это интернет сервис для голосования жильцов
           .navbar-collapse.collapse.navbar-responsive-collapse
-            ul.nav.navbar-nav.pull-right
-              / li= link_to "Link 1", "/path1"
-              / li= link_to "Link 2", "/path2"
+            ul.nav.navbar-nav.navbar-right
               - if current_user
-                li class=class_active?('votings', ['index', 'new', 'create', 'show']) = link_to 'Собрания', root_path
-                li class=class_active?('users', ['edit', 'update']) = link_to "Профиль", profile_path
-              li
-                - if current_user
-                  = link_to "Выход", logout_path, method: :post
-                - else
-                  = link_to "Вход", login_path
+                li.dropdown
+                  a.dropdown-toggle.menu-link-padding data-toggle="dropdown" href="#"
+                    span.glyphicon.glyphicon-align-justify.menu-glyph-lg
+                  ul.dropdown-menu
+                    li
+                      = link_to 'Профиль', profile_path
+                    li
+                      = link_to 'Собрания', root_path
+                    li
+                      = link_to 'Сообщения', root_path
+                    li
+                      = link_to 'Кабинеты', root_path
+                    li
+                      = link_to 'Формула', root_path
+                    li
+                      = link_to 'Статистика', root_path
+                    li
+                      = link_to 'Администратору', root_path
+                    li
+                      = link_to "Выход", logout_path, method: :post
+              - else
+                ul.nav.navbar-nav.pull-right
+                  li
+                    = link_to "Вход", login_path
+
+            /ul.nav.navbar-nav.pull-right
+            /  / li= link_to "Link 1", "/path1"
+            /  / li= link_to "Link 2", "/path2"
+            /  - if current_user
+            /    li class=class_active?('votings', ['index', 'new', 'create', 'show']) = link_to 'Собрания', root_path
+            /    li class=class_active?('users', ['edit', 'update']) = link_to "Профиль", profile_path
+            /  li
+            /    - if current_user
+            /      = link_to "Выход", logout_path, method: :post
+            /    - else
+            /      = link_to "Вход", login_path
 
 
     .container
       .row
-        .col-lg-12
-          = bootstrap_flash
-          = yield
+        - if show_ad_in_sidebar?
+          .col-sm-9
+            = bootstrap_flash
+            = yield
+          .col-sm-3
+            = image_tag("ad_banner_1.jpg")
+            br
+            br
+            = image_tag("ad_banner_3.jpg")
+        - else
+          .col-sm-12
+            = bootstrap_flash
+            = yield
+
         / .col-lg-3
         /   .well.sidebar-nav
         /     h3 Sidebar
@@ -56,7 +94,7 @@ html lang="ru"
         /       li= link_to "Link 3", "/path3"
 
       footer
-        / p &copy; СистемаРосДом.ру 2016
+        p &copy; СистемаРосДом.ру 2016
       /! Yandex.Metrika counter
       javascript:
         (function (d, w, c) {

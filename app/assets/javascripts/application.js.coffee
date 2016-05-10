@@ -3,7 +3,6 @@
 #= require jquery.colorbox.turbolinks
 #= require twitter/bootstrap
 #= require bootstrap
-
 #= require jquery.mask
 #= require jquery.kladr.min
 #= require cocoon

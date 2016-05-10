@@ -1,7 +1,8 @@
-
 h2 Собрания нашего дома
 - @buildings.each do |building|
   = building.short_address
+  br
+  = building.appartment_summary(current_user)
   br
 br
 
@@ -12,6 +13,15 @@ div role="tabpanel"
       a aria-controls="active" data-toggle="tab" href="#active" role="tab" Открытые собрания
     li role="presentation"
       a aria-controls="closed" data-toggle="tab" href="#closed" role="tab" Закрытые собрания
+    -if current_user.has_building? && current_user.status != 'management_company'
+      li role="presentation"
+        a href="#{new_voting_path}" role="tab" Провести собрание
+    li role="presentation"
+      a aria-controls="card" data-toggle="tab" href="#card" role="tab" Карточка
+    li role="presentation"
+      a aria-controls="alias" data-toggle="tab" href="#alias" role="tab" Псевдоним
+    li role="presentation"
+      a aria-controls="appartment" data-toggle="tab" href="#appartment" role="tab" Квартира
 
   /! Tab panes
   .tab-content
@@ -21,7 +31,18 @@ div role="tabpanel"
     #closed.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: @closed_votings, locals: { print: true }
-
+    #create.tab-pane role="tabpanel"
+      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
+        = render partial: 'votings/voting', collection: [], locals: { print: true }
+    #card.tab-pane role="tabpanel"
+      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
+        = render partial: 'votings/voting', collection: [], locals: {print: true}
+    #alias.tab-pane role="tabpanel"
+      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
+        = render partial: 'votings/voting', collection: [], locals: {print: true}
+    #appartment.tab-pane role="tabpanel"
+      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
+        = render partial: 'votings/voting', collection: [], locals: {print: true}
 
 -if current_user.has_building? && current_user.status != 'management_company'
   .pull-right

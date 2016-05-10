@@ -8,6 +8,14 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,cyrillic);
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+  url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
 
 body {
   font-family: 'Open Sans';
@@ -21,8 +29,8 @@ body {
   width: 100%;
 }
 
-.form-control {
-
+.display_none {
+  display:none;
 }
 
 .date-inputs {
@@ -43,6 +51,21 @@ body {
   }
 }
 
+.align_right{
+  float: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
 
 .voting-title {
   span {
@@ -64,6 +87,10 @@ body {
   }
 }
 
+.btn-group-wrap {
+  text-align: center;
+}
+
 
 .a4 {
   border: 0px solid #000;
@@ -71,4 +98,19 @@ body {
   // height:297mm;
   padding: 25px 5px 15px 5px;
   margin: 25px auto;
+}
+
+.menu-glyph-lg {
+  font-size: 20px;
+  line-height: 1.33;
+}
+
+.menu-link-padding{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.col-ad{
+  width: 300px;
+  min-width: 300px;
 }

@@ -1,0 +1,51 @@
+h1.text-center Распечатать
+
+.btn-group-wrap aria-label=("Toolbar with button groups") role="toolbar"
+  .btn-group aria-label=("notice") role="group"
+    = link_to voting_path(print_voting, notice: 1), target: "_blank" do
+      button.btn.btn-secondary type="button"
+        | РЕЕСТР
+        hr
+        | извещение о дате<br/>проведения собраний
+  .btn-group aria-label=("protocol31") role="group"
+    = link_to "do_nothing", onclick: "toggler(#{print_voting.id})" do
+      button.btn.btn-secondary type="button"
+        | БЮЛЛЕТЕНИ
+        hr
+        | решения<br/>собственников
+  .btn-group aria-label=("protocol32") role="group"
+    = link_to voting_path(print_voting, protocol32: 1), target: "_blank" do
+      button.btn.btn-secondary type="button"
+        | ПРОТОКОЛ
+        hr
+        | заседания<br/>счетной комиссии
+  .btn-group aria-label=("registry") role="group"
+    = link_to voting_path(print_voting, protocol31: 1), target: "_blank" do
+      button.btn.btn-secondary type="button"
+        | ПРОТОКОЛ
+        hr
+        | собрания<br/>собственников
+br
+div
+      .well.well-sm.display_none id="apartments_selection_#{print_voting.id}_wrapper"
+        button.btn.btn-default onclick="checkAll(#{print_voting.id})" type="button" Выбрать все/Снять выделение
+        hr
+        = form_tag(voting_path(print_voting), method: :get, target: "_blank")
+          = hidden_field_tag 'registry', 1
+          .btn-group data-toggle="buttons"
+            - print_voting.building.user_buildings.map(&:apartment).compact!.each do |each|
+              = label_tag 'apartments[]', class: "btn btn-primary apartment_checkbox_#{print_voting.id}" do
+                = each
+                = check_box_tag "apartments[]", each
+          = submit_tag "Распечатать", class: "btn btn-success"
+
+javascript:
+  function toggler(voting_id) {
+    event.preventDefault();
+    $("#apartments_selection_" + voting_id + "_wrapper").collapse('toggle');
+  }
+
+  function checkAll(voting_id) {
+    var classname = ".apartment_checkbox_" + voting_id;
+    $(classname).trigger("click");
+  }

@@ -1,7 +1,7 @@
-
-
 $(document)
 
+  .on 'click', '.apartments_selection', (e) ->
+    $(@).closest('#apartments_selection_wrapper').hide()
   .on 'change', '#voting_building_id', (e) ->
     apartment = $(@).find('option:selected').data 'apartment'
     console.log apartment
@@ -24,3 +24,5 @@ $(document)
       url: href
       success: (data, e) ->
         $wrapper.replaceWith data
+
+        $ ->

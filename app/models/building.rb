@@ -13,4 +13,9 @@ class Building < ActiveRecord::Base
   def short_address
     "#{city}, #{street}, #{number}"
   end
+
+  def appartment_summary(user)
+    "кв. №#{apartment} Собственник #{self.users.ids.index(user.id) + 1} из #{self.users.count} (#{user.email})"
+  end
+
 end

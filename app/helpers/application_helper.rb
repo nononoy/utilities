@@ -17,4 +17,8 @@ module ApplicationHelper
     percent
   end
 
+  def show_ad_in_sidebar?
+    ['votings#index', 'votings#new'].include? "#{params[:controller]}##{params[:action]}"
+  end
+
 end

@@ -9,12 +9,15 @@
           / span.rate за 56% против 12%
           - if print
             span= link_to 'распечатать', voting_path(voting), class: 'print pull-right'
+          - else
+            span= link_to 'распечатать', "", class: 'print pull-right', data: { confirm: "Распечатать документы можно только после завершения голосования"}
   .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
     .panel-body
-      .well= voting.description
+      .well.well-sm= voting.description
       h4 Вопросы, вынесенные на голосование:
       'Я, собственник кв. №#{get_appartments(@user_buildings, voting.building_id)} предлагаю:
       ol
         = render partial: "votings/voting_question", collection: voting.voting_questions, locals: { closed_flag: voting.is_closed? }
+      = (render partial: "votings/print_voting", collection: [voting]) if voting.is_closed?
 
 
