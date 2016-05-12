@@ -15,11 +15,9 @@ div role="tabpanel"
       a aria-controls="closed" data-toggle="tab" href="#closed" role="tab" Закрытые собрания
     -if current_user.has_building? && current_user.status != 'management_company'
       li role="presentation"
-        a href="#{new_voting_path}" role="tab" Провести собрание
+        = link_to "Провести собрание", "#{new_voting_path}", role: "tab"
     li role="presentation"
-      a aria-controls="card" data-toggle="tab" href="#card" role="tab" Карточка
-    li role="presentation"
-      a aria-controls="alias" data-toggle="tab" href="#alias" role="tab" Псевдоним
+      = link_to "Лич.кабинет", profile_path, role: "tab"
     li role="presentation"
       a aria-controls="appartment" data-toggle="tab" href="#appartment" role="tab" Квартира
 
@@ -27,23 +25,28 @@ div role="tabpanel"
   .tab-content
     #active.tab-pane.active role="tabpanel"
       #accordion.panel-group aria-multiselectable="true" role="tablist"
-        = render partial: 'votings/voting', collection: @active_votings, locals: { print: false }
+        - if @active_votings.any?
+          = render partial: 'votings/voting', collection: @active_votings, locals: {print: false}
+        - else
+          br
+          | Сейчас нет активных собраний
+          br
+          | Вы сможете самостоятельно инициировать новое на странице "Провести собрание"
     #closed.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: @closed_votings, locals: { print: true }
-    #create.tab-pane role="tabpanel"
-      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
-        = render partial: 'votings/voting', collection: [], locals: { print: true }
-    #card.tab-pane role="tabpanel"
-      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
-        = render partial: 'votings/voting', collection: [], locals: {print: true}
     #alias.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: [], locals: {print: true}
     #appartment.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: [], locals: {print: true}
-
--if current_user.has_building? && current_user.status != 'management_company'
-  .pull-right
-    = link_to 'Провести собрание', new_voting_path
+br
+hr
+h3 Форум
+hr
+#hypercomments_widget
+script[type="text/javascript"]
+  |  _hcwp = window._hcwp || []; _hcwp.push({widget:"Stream", widget_id: 74957}); (function() { if("HC_LOAD_INIT" in window)return; HC_LOAD_INIT = true; var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase(); var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true; hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/74957/"+lang+"/widget.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hcc, s.nextSibling); })();
+a.hc-link[href="http://hypercomments.com" title="comments widget"]
+  | comments powered by HyperComments

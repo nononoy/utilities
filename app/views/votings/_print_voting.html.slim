@@ -1,26 +1,26 @@
 h1.text-center Распечатать
 
 .btn-group-wrap aria-label=("Toolbar with button groups") role="toolbar"
-  .btn-group aria-label=("notice") role="group"
+  .btn-group.right_margin_10 aria-label=("notice") role="group"
     = link_to voting_path(print_voting, notice: 1), target: "_blank" do
       button.btn.btn-secondary type="button"
         | РЕЕСТР
         hr
         | извещение о дате<br/>проведения собраний
-  .btn-group aria-label=("protocol31") role="group"
+  .btn-group.right_margin_10 aria-label=("protocol31") role="group"
     = link_to "do_nothing", onclick: "toggler(#{print_voting.id})" do
       button.btn.btn-secondary type="button"
         | БЮЛЛЕТЕНИ
         hr
         | решения<br/>собственников
-  .btn-group aria-label=("protocol32") role="group"
-    = link_to voting_path(print_voting, protocol32: 1), target: "_blank" do
+  .btn-group.right_margin_10 aria-label=("protocol32") role="group"
+    = link_to voting_path(print_voting, protocol2: 1), target: "_blank" do
       button.btn.btn-secondary type="button"
         | ПРОТОКОЛ
         hr
         | заседания<br/>счетной комиссии
-  .btn-group aria-label=("registry") role="group"
-    = link_to voting_path(print_voting, protocol31: 1), target: "_blank" do
+  .btn-group.right_margin_10 aria-label=("registry") role="group"
+    = link_to voting_path(print_voting, protocol1: 1), target: "_blank" do
       button.btn.btn-secondary type="button"
         | ПРОТОКОЛ
         hr
@@ -32,12 +32,12 @@ div
         hr
         = form_tag(voting_path(print_voting), method: :get, target: "_blank")
           = hidden_field_tag 'registry', 1
-          .btn-group data-toggle="buttons"
-            - print_voting.building.user_buildings.map(&:apartment).compact!.each do |each|
-              = label_tag 'apartments[]', class: "btn btn-primary apartment_checkbox_#{print_voting.id}" do
+          .btn-group.apartment_btn data-toggle="buttons"
+            - print_voting.building.user_buildings.map(&:apartment).compact!.uniq.sort.each do |each|
+              = label_tag 'apartments[]', class: "btn btn-primary right_margin_5 bottom_margin_5 apartment_checkbox_#{print_voting.id}" do
                 = each
                 = check_box_tag "apartments[]", each
-          = submit_tag "Распечатать", class: "btn btn-success"
+          = submit_tag "Распечатать", class: "btn btn-default submit_btn"
 
 javascript:
   function toggler(voting_id) {

@@ -12,9 +12,8 @@
         td= @voting.user.full_name
         td= @voting.user.phone
     .clearfix
-  = render partial: "votings/user", collection: @voting.users
 
-- if params[:protocol31].present?
+- if params[:protocol1].present?
   .a4
     .pull-left= dt(@voting.end_at)
     .pull-right г. #{@building.city}
@@ -58,7 +57,7 @@
             td= voting_question.solution
     .clearfix
 
-- if params[:protocol32].present?
+- if params[:protocol2].present?
   .a4
     .pull-left= dt(@voting.end_at)
     .pull-right г. #{@building.city}
@@ -116,6 +115,7 @@
     .clearfix
 
 - if params[:registry].present?
+  = render partial: "votings/user", collection: @voting.users
   .a4
     .pull-left= dt(@voting.end_at)
     .pull-right г. #{@building.city}

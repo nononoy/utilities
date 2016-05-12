@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510060505) do
+ActiveRecord::Schema.define(version: 20160512162651) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -116,9 +116,9 @@ ActiveRecord::Schema.define(version: 20160510060505) do
     t.text     "description",       limit: 65535
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
-    t.decimal  "accepted_percent",                precision: 5, scale: 4
-    t.decimal  "discarded_percent",               precision: 5, scale: 4
-    t.decimal  "refrained_percent",               precision: 5, scale: 4
+    t.decimal  "accepted_percent",                precision: 7, scale: 4
+    t.decimal  "discarded_percent",               precision: 7, scale: 4
+    t.decimal  "refrained_percent",               precision: 7, scale: 4
   end
 
   add_index "voting_questions", ["voting_id"], name: "index_voting_questions_on_voting_id", using: :btree

@@ -4,11 +4,12 @@
       a.collapsed aria-controls="voting#{voting.id}" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#voting#{voting.id}"
         .voting-title
           span.nmb № #{voting.id}
+          span.period по #{voting.end_at.localtime.strftime("%d.%m.%Y")}
           span.ttl= voting.title
-          span.period с #{voting.start_at.strftime("%d.%m.%Y")} по #{voting.end_at.localtime.strftime("%d.%m.%Y %H:%M")}
           / span.rate за 56% против 12%
           - if print
-            span= link_to 'распечатать', voting_path(voting), class: 'print pull-right'
+            span class='print pull-right'
+              | Распечатать
           - else
             span= link_to 'распечатать', "", class: 'print pull-right', data: { confirm: "Распечатать документы можно только после завершения голосования"}
   .panel-collapse.collapse aria-labelledby="headingTwo" role="tabpanel" id="voting#{voting.id}"
