@@ -27,7 +27,6 @@ $(document)
 
         $ ->
 
-#TODO Удалить дублирование hypercomments
 $(document).on 'ready page:load', ->
   _hcwp = window._hcwp or []
   _hcwp.push
