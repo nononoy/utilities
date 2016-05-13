@@ -5,7 +5,19 @@ class VotingsController < ApplicationController
     @user_buildings = current_user.user_buildings.to_a
     building_votings = current_user.building_votings.includes(voting_questions: :attachments)
     @active_votings = building_votings.active.uniq
-    @closed_votings = building_votings.closed.uniq
+
+    @active_tab = if params[:tab]
+                   params[:tab]
+                 else
+                   "active"
+                 end
+    if params[:month].present?
+      @current = Date.parse(params[:month])
+      @closed_votings = building_votings.closed.where(start_at: @current.beginning_of_month.beginning_of_day..@current.end_of_month.end_of_day).uniq
+    else
+      @current = Date.today
+      @closed_votings = building_votings.closed.uniq
+    end
   end
 
   def new

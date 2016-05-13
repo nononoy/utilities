@@ -23,6 +23,7 @@ gem 'jquery-validation-rails'
 gem 'jquery-colorbox-rails'
 
 gem "sorcery"
+gem "russian"
 gem 'simple_form'
 gem 'inherited_resources'
 gem "responders", '~> 2.0'

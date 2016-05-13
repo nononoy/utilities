@@ -113,9 +113,8 @@
       'Члены счётной комиссии:
       = render partial: 'votings/owners'
     .clearfix
-
+/= render partial: "votings/user", collection: @voting.users
 - if params[:registry].present?
-  = render partial: "votings/user", collection: @voting.users
   .a4
     .pull-left= dt(@voting.end_at)
     .pull-right г. #{@building.city}

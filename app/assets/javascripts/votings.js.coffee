@@ -26,3 +26,20 @@ $(document)
         $wrapper.replaceWith data
 
         $ ->
+
+#TODO Удалить дублирование hypercomments
+$(document).on 'ready page:load', ->
+  _hcwp = window._hcwp or []
+  _hcwp.push
+    widget: 'Stream'
+    widget_id: 74957
+  do ->
+    if 'HC_LOAD_INIT' of window
+      HC_LOAD_INIT = true
+      lang = (navigator.language or navigator.systemLanguage or navigator.userLanguage or 'en').substr(0, 2).toLowerCase()
+      hcc = document.createElement('script')
+      hcc.type = 'text/javascript'
+      hcc.async = true
+      hcc.src = (if 'https:' == document.location.protocol then 'https' else 'http') + '://w.hypercomments.com/widget/hc/74957/' + lang + '/widget.js'
+      s = document.getElementsByTagName('script')[0]
+      s.parentNode.insertBefore hcc, s.nextSibling

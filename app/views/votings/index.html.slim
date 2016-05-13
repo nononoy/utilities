@@ -9,9 +9,9 @@ br
 div role="tabpanel"
   /! Nav tabs
   ul.nav.nav-tabs role="tablist"
-    li.active role="presentation"
+    li class="#{"active" if @active_tab == "active"}" role="presentation"
       a aria-controls="active" data-toggle="tab" href="#active" role="tab" Открытые собрания
-    li role="presentation"
+    li class="#{"active" if @active_tab == "closed"}" role="presentation"
       a aria-controls="closed" data-toggle="tab" href="#closed" role="tab" Закрытые собрания
     -if current_user.has_building? && current_user.status != 'management_company'
       li role="presentation"
@@ -23,7 +23,7 @@ div role="tabpanel"
 
   /! Tab panes
   .tab-content
-    #active.tab-pane.active role="tabpanel"
+    #active.tab-pane class="#{"active" if @active_tab == "active"}" role="tabpanel"
       #accordion.panel-group aria-multiselectable="true" role="tablist"
         - if @active_votings.any?
           = render partial: 'votings/voting', collection: @active_votings, locals: {print: false}
@@ -32,21 +32,26 @@ div role="tabpanel"
           | Сейчас нет активных собраний
           br
           | Вы сможете самостоятельно инициировать новое на странице "Провести собрание"
-    #closed.tab-pane role="tabpanel"
+          br
+          hr
+          h3 Форум
+          hr
+          #hypercomments_widget
+          script[type="text/javascript"]
+            | $(document).on("ready page:load", function(){ _hcwp = window._hcwp || []; _hcwp.push({widget:"Stream", widget_id: 74957}); (function() { if("HC_LOAD_INIT" in window)return; HC_LOAD_INIT = true; var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase(); var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true; hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/74957/"+lang+"/widget.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hcc, s.nextSibling); })();});
+    #closed.tab-pane class="#{"active" if @active_tab == "closed"}" role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: @closed_votings, locals: { print: true }
+        ul.pagination.text-center
+          li
+            = link_to "&laquo; Предыдущий месяц".html_safe, {month: @current.prev_month.beginning_of_month, tab: "closed"}
+          li.disabled
+            = link_to Russian::strftime(@current, "%B %Y"), ""
+          li
+            = link_to "Следующий месяц &raquo;".html_safe, {month: @current.next_month.beginning_of_month, tab: "closed"}
     #alias.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: [], locals: {print: true}
     #appartment.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: [], locals: {print: true}
-br
-hr
-h3 Форум
-hr
-#hypercomments_widget
-script[type="text/javascript"]
-  |  _hcwp = window._hcwp || []; _hcwp.push({widget:"Stream", widget_id: 74957}); (function() { if("HC_LOAD_INIT" in window)return; HC_LOAD_INIT = true; var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase(); var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true; hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/74957/"+lang+"/widget.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hcc, s.nextSibling); })();
-a.hc-link[href="http://hypercomments.com" title="comments widget"]
-  | comments powered by HyperComments
