@@ -16,7 +16,7 @@ class VotingsController < ApplicationController
       @closed_votings = building_votings.closed.where(start_at: @current.beginning_of_month.beginning_of_day..@current.end_of_month.end_of_day).uniq
     else
       @current = Date.today
-      @closed_votings = building_votings.closed.uniq
+      @closed_votings = building_votings.closed.where(start_at: @current.beginning_of_month.beginning_of_day..@current.end_of_month.end_of_day).uniq
     end
   end
 
