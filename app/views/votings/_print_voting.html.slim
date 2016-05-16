@@ -33,7 +33,7 @@ div
         = form_tag(voting_path(print_voting), method: :get, target: "_blank")
           = hidden_field_tag 'registry', 1
           .btn-group.apartment_btn data-toggle="buttons"
-            - buildings = print_voting.building.user_buildings.map(&:apartment).compact!
+            - buildings = print_voting.building.user_buildings.map(&:apartment).compact
             - if buildings.any?
               - buildings.uniq.sort.each do |each|
                 = label_tag 'apartments[]', class: "btn btn-primary right_margin_5 bottom_margin_5 apartment_checkbox_#{print_voting.id}" do
