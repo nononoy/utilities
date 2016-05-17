@@ -25,8 +25,6 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to true if using ActiveRecord
 
-b
-
 set :linked_dirs, %w{log tmp/pids tmp/sockets vendor/bundle public/uploads}
 
 set :keep_releases, 2
