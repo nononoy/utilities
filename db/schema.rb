@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160512162651) do
+ActiveRecord::Schema.define(version: 20160517181021) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(version: 20160512162651) do
     t.datetime "created_at",                                 null: false
     t.datetime "updated_at",                                 null: false
     t.integer  "building_id",  limit: 4
+    t.string   "chairman",     limit: 255
+    t.string   "secretary",    limit: 255
   end
 
   add_index "votings", ["building_id"], name: "index_votings_on_building_id", using: :btree

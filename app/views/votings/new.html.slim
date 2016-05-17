@@ -1,39 +1,65 @@
 h2 Объявить собрание
-/ = current_user.address
-br
+- current_user.buildings.uniq.each do |building|
+  = building.short_address
+  br
+  = building.appartment_summary(current_user)
+  br
 br
 = simple_form_for @voting, html: { class: 'form-horizontal' } do |f|
-  = f.input :building_id, collection: current_user.buildings.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false, required: true
+  = f.input :building_id, collection: current_user.buildings.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]},
+              include_blank: false, prompt: false, required: true, label: false, wrapper_html: {class: "width-80 float-left"}
   /= f.input :building_id, collection: current_user.buildings.with_square.uniq.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false, required: true
-  = f.input :title, label: false, input_html: { placeholder: 'Впишите заголовок(не более трех слов)' }, required: true
-  = f.input :user_id, as: :hidden
-  = f.input :description, input_html: { placeholder: 'Опишите причину, почему вы предлагаете свой вопрос или прочитайте инструкцию, нажав на кнопку сто знаком вопроса (?)', rows: 6 }, label: false, required: true
-  p
-    'Исходя из этого, я, #{current_user.full_name}, собственник кв. №
-    span.js-apartment= current_user.apartments.values.first.join(", ")
-    '&nbsp; предлагаю:
+  .form-group.width-20.float-right
+    button.btn.btn.btn-default.float-right.width-100.overflow-hidden data-target="#rules" data-toggle="modal" type="button"  Правила голосования
 
+    /! Modal
+    #rules.modal.fade role="dialog"
+      .modal-dialog
+        /! Modal content
+        .modal-content
+          .modal-header
+            button.close data-dismiss="modal" type="button"  &times;
+            h4.modal-title ИНСТРУКЦИЯ. Как правильно заполнять голосование
+          .modal-body
+            p Текст инструкции.
+          .modal-footer
+            button.btn.btn-default data-dismiss="modal" type="button"  Закрыть
 
   .form-inline.date-inputs
-
     .txt Дата проведения:
-
     .form-group
       label for="voting_start_at" с
-      = f.text_field :start_at,  class: 'date form-control', required: true
-
+      = f.text_field :start_at,  class: 'datetime form-control datepicker', required: true
+      span.add-on
+        i data-date-icon="icon-calendar" data-time-icon="icon-time"
     .form-group
       label for="voting_end_at" по
-      = f.text_field :end_at, class: 'datetime form-control', required: true
+      = f.text_field :end_at, class: 'datetime form-control datepicker', required: true
+    .form-group
+      = f.check_box :notify_all,  class: 'vertical-align-middle new_voting_green_checkbox', required: true
+      label.green_style.label.label-success for="voting_notify_all" Оповестить соседей
 
-  = f.input :notify_all, label: 'Сделать рассылку всем собственникам'
+  = f.input :description, input_html: {placeholder: 'ПРИЧИНА СОБРАНИЯ (можно не заполнять)', rows: 3}, label: false, required: true
+  = f.input :title, as: :text, label: false, input_html: { placeholder: "ТЕМА (придумайте общее название собранию, например: \
+      «Переизбрать управляющего» или «Собрать деньги на ремонт 2 и 4 подъездов»)", rows: 3}, required: true
+  = f.input :user_id, as: :hidden
+  = f.input :chairman, label: "Председателем собрания предлагаю избрать:", required: true
+  = f.input :secretary, label: "Секретарем собрания предлагаю избрать:", required: true
+  p
+    'Я, #{current_user.full_name}, собственник кв. №
+    span.js-apartment= current_user.apartments.values.first.join(", ")
+    '&nbsp; предлагаю проголосовать по следующим вопросам:
+  .text-center
+    span.label.label-success ВНИМАНИЕ! Все вопросы должны отвечать на вопрос - Что сделать?
+  br
 
   #voting_questions
     = f.simple_fields_for :voting_questions do |voting_question|
       = render 'voting_question_fields', f: voting_question
     .links
-      = link_to_add_association 'добавить вопрос', f, :voting_questions
+      = link_to_add_association 'добавить следующий вопрос', f, :voting_questions
   .clearfix
+  br
 
   / = f.input :is_published
   .form-group
@@ -46,8 +72,10 @@ br
           li На электронном табло на вашем доме вывести этот вопрос.
           li Обзвонить, кого возможно, и сказать, что началось голосование.
           li По секрету поделиться с бабушками у подъезда (тем самым запустить сарафанное радио).
-          li Поставить галочку напротив кнопки "Сделать рассылку всем собственникам".
-          li Не забудьте проголосовать самостоятельно
+          li Поставить галочку напротив кнопки "Оповестить соседей".
+          li
+            ' После публикации
+            span.label.label-success не забудьте проголосовать самостоятельно
 
   .form-group
     = f.button :submit, 'Опубликовать'

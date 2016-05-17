@@ -10,5 +10,6 @@ public/422.html
 public/500.html
 public/favicon.ico
 public/javascripts
+config/database.yml
 /coverage
 

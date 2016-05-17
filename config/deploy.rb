@@ -25,7 +25,7 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to true if using ActiveRecord
 
-set :linked_files, %w{config/database.yml config/secrets.yml}
+b
 
 set :linked_dirs, %w{log tmp/pids tmp/sockets vendor/bundle public/uploads}
 

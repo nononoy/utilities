@@ -113,46 +113,5 @@
       'Члены счётной комиссии:
       = render partial: 'votings/owners'
     .clearfix
-/= render partial: "votings/user", collection: @voting.users
 - if params[:registry].present?
-  .a4
-    .pull-left= dt(@voting.end_at)
-    .pull-right г. #{@building.city}
-    h2.centered РЕЕСТР
-
-    h4.centered
-      'бюллетеней для голосования (решений) РАЗОСЛАННЫЕ собственникам помещений
-      br
-      'дома №#{@building.number} по #{@building.street} в г.#{@building.city} и извещение их о дате и времени проведения общего
-      br
-      'собрания собственников помещений в форме очного голосования.
-
-    p
-      'Настоящим мы, нижеподписавшиеся собственники помещений в многоквартирном доме №#{@building.number} по
-      br
-      '#{@building.street} в г.#{@building.city}, подтверждаем, что получили на руки бюллетень для голосования и
-      br
-      'уведомлены о том, что #{dt(@voting.end_at)}г. в #{@voting.end_at.localtime.strftime("%H:%M")} состоится общее собрание собственников помещений в
-      br
-      'форме очного голосования по следующей повестке дня:
-
-    table.table.table-bordered
-      thead
-        tr
-          th № помещения
-          th Фамилия, имя, отчество(наименование) собственника
-          th Реквизиты документа, подтверждающего право собственности
-          th Подпись собственника
-          th Примечание
-      tbody
-        - @user_buildings.with_apartment.each do |user_building|
-          - if params[:apartments].present? && params[:apartments].include?(user_building.apartment.to_s)
-            tr
-              td= user_building.apartment
-              td= user_building.user.full_name
-              td= user_building.certificate_details
-              td
-              td
-    p
-      'Счётная комиссия в составе:
-      = render partial: 'votings/owners'
+  = render partial: "votings/user", collection: @voting.users

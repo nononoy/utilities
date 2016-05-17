@@ -7,7 +7,7 @@
 default: &default
   adapter: mysql2
   username: root
-  password: uunibuzoehaihohn
+  password: root
   host: localhost
   encoding: utf8
   

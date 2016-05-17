@@ -2,6 +2,11 @@
 #= require jquery_ujs
 #= require jquery.colorbox.turbolinks
 #= require twitter/bootstrap
+#= require bootstrap-datepicker/core
+#= require bootstrap-datepicker/locales/bootstrap-datepicker.ru.js
+#= require moment
+#= require moment/ru
+#= require bootstrap-datetimepicker
 #= require bootstrap
 #= require jquery.mask
 #= require jquery.kladr.min
@@ -17,3 +22,7 @@ $(document).on "ready page:load", ->
   $('.phone').mask '+7(999)999-99-99'
   $('.colorbox').colorbox
     maxWidth: $( window ).width()
+
+  $('.datepicker').datetimepicker({
+    useCurrent: true,
+  });
