@@ -15,6 +15,11 @@ $(document)
       url: href
       success: (data, e) ->
         $wrapper.replaceWith data
+  .on 'click', '.new-voting-submit', (e) ->
+    if $('.new_voting_green_checkbox').is(":checked") == false
+      alert("Вы должны оповестить соседей о голосовании! ");
+      $('.new_voting_green_checkbox').trigger("focus");
+      event.preventDefault();
 
   .on 'click', '.js-discard-question', (e) ->
     href = $(@).data "href"

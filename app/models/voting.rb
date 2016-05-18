@@ -18,6 +18,7 @@ class Voting < ActiveRecord::Base
   belongs_to :user
   belongs_to :building
   validates_presence_of :user_id, :title, :start_at, :end_at, :description, :secretary, :chairman
+
   has_many :voting_questions, dependent: :destroy
   has_many :user_voting_questions, through: :voting_questions
   has_many :users,-> { uniq }, through: :user_voting_questions

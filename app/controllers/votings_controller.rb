@@ -40,8 +40,8 @@ class VotingsController < ApplicationController
 
     def voting_params
       params.require(:voting).permit(
-        :user_id, :description, :title, :start_at, :end_at, :notify_all, :is_published, :building_id,
-        voting_questions_attributes: [ :description, :_destroy, files: []]
+        :user_id, :description, :title, :start_at, :end_at, :notify_all, :is_published, :building_id, :secretary,
+        :chairman, voting_questions_attributes: [ :description, :_destroy, files: []]
         )
     end
 end

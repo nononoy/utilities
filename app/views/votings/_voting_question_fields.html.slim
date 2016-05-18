@@ -1,6 +1,6 @@
 .nested-fields
-  = f.input :description, input_html: { placeholder: 'Впишите вопрос, который нужно решить, например:', rows: 3},
-            label: false, required: true
+  = f.input :description, as: :string, input_html: { placeholder: "Впишите вопрос, который нужно решить, например: \
+    «Сменить обслуживающую компанию»", style: "height: 60px;", class: "nested_question"}, label: false, required: true
   = f.input :files, as: :file, input_html: {multiple: :multiple}, label: false
   = link_to_remove_association "удалить предыдущий вопрос", f
   br

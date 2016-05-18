@@ -1,8 +1,8 @@
 h2 Объявить собрание
 - current_user.buildings.uniq.each do |building|
-  = building.short_address
+  span#building_summary = building.short_address
   br
-  = building.appartment_summary(current_user)
+    = building.appartment_summary(current_user)
   br
 br
 = simple_form_for @voting, html: { class: 'form-horizontal' } do |f|
@@ -11,20 +11,6 @@ br
   /= f.input :building_id, collection: current_user.buildings.with_square.uniq.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false, required: true
   .form-group.width-20.float-right
     button.btn.btn.btn-default.float-right.width-100.overflow-hidden data-target="#rules" data-toggle="modal" type="button"  Правила голосования
-
-    /! Modal
-    #rules.modal.fade role="dialog"
-      .modal-dialog
-        /! Modal content
-        .modal-content
-          .modal-header
-            button.close data-dismiss="modal" type="button"  &times;
-            h4.modal-title ИНСТРУКЦИЯ. Как правильно заполнять голосование
-          .modal-body
-            p Текст инструкции.
-          .modal-footer
-            button.btn.btn-default data-dismiss="modal" type="button"  Закрыть
-
   .form-inline.date-inputs
     .txt Дата проведения:
     .form-group
@@ -42,6 +28,8 @@ br
   = f.input :description, input_html: {placeholder: 'ПРИЧИНА СОБРАНИЯ (можно не заполнять)', rows: 3}, label: false, required: true
   = f.input :title, as: :text, label: false, input_html: { placeholder: "ТЕМА (придумайте общее название собранию, например: \
       «Переизбрать управляющего» или «Собрать деньги на ремонт 2 и 4 подъездов»)", rows: 3}, required: true
+  = hidden_field_tag 'user_full_name', current_user.full_name
+  = hidden_field_tag 'user_phone', current_user.phone
   = f.input :user_id, as: :hidden
   = f.input :chairman, label: "Председателем собрания предлагаю избрать:", required: true
   = f.input :secretary, label: "Секретарем собрания предлагаю избрать:", required: true
@@ -78,4 +66,62 @@ br
             span.label.label-success не забудьте проголосовать самостоятельно
 
   .form-group
-    = f.button :submit, 'Опубликовать'
+    button.btn.btn.btn-default.right_margin_10 data-target="#preview_modal" data-toggle="modal" type="button" onclick="fill_preview_modal();" Предварительный просмотр
+    = f.button :submit, 'Опубликовать', class: "new-voting-submit"
+
+#rules.modal.fade role="dialog"
+  .modal-dialog
+    /! Modal content
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"  &times;
+        h4.modal-title ИНСТРУКЦИЯ. Как правильно заполнять голосование
+      .modal-body
+        p Текст инструкции.
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Закрыть
+
+#preview_modal.modal.fade role="dialog"
+  .modal-dialog
+    /! Modal content
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"  &times;
+        h4.modal-title Предварительный просмотр
+      .modal-body
+        .a4
+          h2.centered Уведомление
+          h4.centered
+            span.start_date
+            ' состоится общее собрание собственников помещений дома по адресу
+            span.building_summary>
+            | в форме очного голосования по следующей повестке дня:
+          p
+          ol.voting_questions
+          /  - @voting_questions.each do |voting_question|
+          /    li= "#{voting_question.description}."
+          table.table.table-bordered
+            tr
+              td.user_fullname
+              td.user_phone
+          .clearfix
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Закрыть
+
+javascript:
+  function fill_preview_modal() {
+    var end_date = $("#voting_end_at").val();
+    var building_summary = $("#building_summary").text();
+    var user_fullname = $("#user_full_name").val();
+    var user_phone = $("#user_phone").val();
+
+    $('ol.voting_questions').empty();
+    $("input.nested_question").each(function () {
+      $("ol.voting_questions").append('<li>' + $(this).val() + '</li>');
+    });
+
+    $(".start_date").html(end_date.substring(0,10) + " г. в " + end_date.substring(11,16) + " ");
+    $(".building_summary").html(building_summary);
+    $(".user_fullname").html(user_fullname);
+    $(".user_phone").html(user_phone);
+  }
