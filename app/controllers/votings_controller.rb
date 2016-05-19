@@ -1,6 +1,8 @@
 class VotingsController < ApplicationController
 
   def index
+    @user = current_user
+    @user.user_buildings.build unless @user.user_buildings.any?
     @buildings = current_user.buildings.uniq
     @user_buildings = current_user.user_buildings.to_a
     building_votings = current_user.building_votings.includes(voting_questions: :attachments)

@@ -18,6 +18,8 @@ class UserBuilding < ActiveRecord::Base
 
   attr_accessor :city, :street, :building_number, :num_of_facilities, :full_building_square
 
+  validates_presence_of :city
+
   belongs_to :user
   belongs_to :building
   has_many :votings, through: :building

@@ -1,12 +1,16 @@
 .nested-fields
   .well
-    = f.input :city, input_html: { class: 'js-city', value: (f.object.try(:city) || f.object.building.try(:city)), autocomplete: "off" }, required: true
-    = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)), autocomplete: "off" }, required: true
-    = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || f.object.building.try(:number)), autocomplete: "off" }, required: true
+    = f.input :city, input_html: { class: 'js-city', value: (f.object.try(:city) || f.object.building.try(:city)),
+                                   autocomplete: "off", placeholder: "Наберите свой населенный пункт" }, required: true
+    = f.input :street, input_html: { class: 'js-street', value: (f.object.try(:street) || f.object.building.try(:street)),
+                                     autocomplete: "off", placeholder: "Наберите свою улицу", required: true }, required: true
+    = f.input :building_number, input_html: { class: 'js-building_number', value: (f.object.try(:building_number) || \
+    f.object.building.try(:number)), autocomplete: "off", placeholder: "Наберите номер своего дома" }, required: true
     - unless current_user.is_management_company?
-      = f.input :apartment, required: true
-      = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %", required: true
-      = f.input :facility_square, required: true
+      = f.input :apartment, required: true, input_html: { placeholder: "Наберите номер своей квартиры" }
+      = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %", required: true, input_html: \
+      { placeholder: "Впишите вашу долю в этой квартире (как в свидетельстве)" }
+      /= f.input :facility_square, required: true
     = f.input :address, as: :hidden, input_html: { class: 'js-address' }
 
     - if current_user.is_management_company?
@@ -22,18 +26,18 @@
         .panel-heading
           h3.panel-title Свидетельство о собственности
         .panel-body
-          = f.input :series, required: true
-          = f.input :number, required: true
-          = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date' }, required: true
-          = f.input :certificate, label: ' ', required: !f.object.certificate.present?
-          - if f.object.certificate.present?
-            .form-group
-              .col-sm-3.control-label
-              .col-sm-9
-                .pull-left
-                  a.colorbox href=f.object.certificate.url
-                    = image_tag f.object.certificate.url, width: 300
+          = f.input :series, input_html: { placeholder: "Заполняется по желанию" }
+          = f.input :number, input_html: { placeholder: "Заполняется по желанию" }
+          /= f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date' }, required: true
+          /= f.input :certificate, label: ' ', required: !f.object.certificate.present?
+          /- if f.object.certificate.present?
+          /  .form-group
+          /    .col-sm-3.control-label
+          /    .col-sm-9
+          /      .pull-left
+          /        a.colorbox href=f.object.certificate.url
+          /          = image_tag f.object.certificate.url, width: 300
 
 
-    = link_to_remove_association "удалить адрес", f
-
+      = link_to_remove_association "удалить адрес", f, class: "btn btn-danger btn-xs remove_user_building"
+      br

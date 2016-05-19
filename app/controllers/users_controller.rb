@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def activate
     if (@user = User.load_from_activation_token(params[:id]))
       @user.activate!
-      redirect_to(login_path, :notice => 'Вы успешно активировали свою учетную запись')
+      redirect_to(votings_path(tab: "cabinet"), :notice => 'Вы успешно активировали свою учетную запись')
     else
       not_authenticated
     end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to profile_path, notice: 'Успешное редактирование' }
+        format.html { redirect_to votings_path(tab: "cabinet"), notice: 'Успешное редактирование' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

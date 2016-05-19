@@ -16,8 +16,8 @@ div role="tabpanel"
     -if current_user.has_building? && current_user.status != 'management_company'
       li role="presentation"
         = link_to "Провести собрание", "#{new_voting_path}", role: "tab"
-    li role="presentation"
-      = link_to "Лич.кабинет", profile_path, role: "tab"
+    li class="#{"active" if @active_tab == "cabinet"}" role="presentation"
+      a aria-controls="cabinet" data-toggle="tab" href="#cabinet" role="tab" Лич.кабинет
     li role="presentation"
       a aria-controls="appartment" data-toggle="tab" href="#appartment" role="tab" Квартира
 
@@ -49,9 +49,9 @@ div role="tabpanel"
             = link_to Russian::strftime(@current, "%B %Y"), ""
           li
             = link_to "Следующий месяц &raquo;".html_safe, {month: @current.next_month.beginning_of_month, tab: "closed"}
-    #alias.tab-pane role="tabpanel"
+    #cabinet.tab-pane class="#{"active" if @active_tab == "cabinet"}" role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
-        = render partial: 'votings/voting', collection: [], locals: {print: true}
+        = render file: 'users/edit'
     #appartment.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: [], locals: {print: true}
