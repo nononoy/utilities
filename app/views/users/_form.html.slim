@@ -1,15 +1,23 @@
-br
-- unless current_user
-  = f.input :email, required: true
-  = f.input :password, required: true
-  = f.input :password_confirmation, required: true
-  = f.input :status, as: :radio_buttons, label: ''
-#user_buildings
-  = f.simple_fields_for :user_buildings do |user_building|
-    = render 'users/user_building_fields', f: user_building
-  .links
-    = link_to_add_association 'добавить адрес', f, :user_buildings, class: "btn btn-primary btn-xs",
-                              partial: 'users/user_building_fields'
-.clearfix
-
+= simple_form_for @user, html: { class: 'form-horizontal js-form-address' },
+                  wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
+                                                                 radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+  = f.error_notification
+  br
+  - unless current_user
+    = f.input :email, required: true
+    = f.input :password, required: true
+    = f.input :password_confirmation, required: true
+    = f.input :status, as: :radio_buttons, label: ''
+  #user_buildings
+    = f.simple_fields_for :user_buildings do |user_building|
+      = render 'users/user_building_fields', f: user_building
+    .links
+      = link_to_add_association 'добавить адрес', f, :user_buildings, class: "btn btn-primary btn-xs",
+                                partial: 'users/user_building_fields'
+  .clearfix
+  .form-group
+    label.col-sm-3.control-label
+    br
+    .col-sm-9
+      = f.button :submit, "#{current_user ? 'Сохранить' : 'Зарегистрироваться'}", class: 'btn btn-success'
 

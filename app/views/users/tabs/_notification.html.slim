@@ -1,1 +1,51 @@
-= f.input :notify_me, label: 'Желаю получать рассылку о собраниях'
+= simple_form_for @user, html: {class: 'form-inline js-form-address'},
+                  wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes,
+                                                                radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean} do |f|
+  = f.error_notification
+  br
+  .well
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю получать ответы на мои запросы
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю получать уведомления (сообщения) от обслуживающей компании
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять предложения всему дому
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять предложения обслуживающей компании
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять поручения обслуживающей компании
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять претензии обслуживающей компании
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять жалобы обслуживающей компании
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять жалобы в надзорные органы
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять предложения в надзорные органы
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю направлять сообщения в надзорные органы
+
+  .form-group
+    label.col-sm-3.control-label
+    br
+    .col-sm-9
+      = f.button :submit, "#{current_user ? 'Сохранить' : 'Зарегистрироваться'}", class: 'btn btn-success'

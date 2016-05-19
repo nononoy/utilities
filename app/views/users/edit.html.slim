@@ -6,21 +6,13 @@ div role="tabpanel"
     li
       a aria-controls="info" data-toggle="tab" href="#info" role="tab" Псевдоним
     li
-      a aria-controls="notify" data-toggle="tab" href="#notify" role="tab" Оповещения
+      a aria-controls="notify" data-toggle="tab" href="#notify" role="tab" Оповещение
 
-  = simple_form_for @user, html: { class: 'form-horizontal js-form-address' },
-      wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
-        radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
-    = f.error_notification
-    .tab-content
-      #home.tab-pane.active
-        == render 'users/form', f: f
-      #info.tab-pane
-        == render partial: "users/tabs/#{current_user.status}", locals: { f: f }
-      #notify.tab-pane
-        == render partial: "users/tabs/notification", locals: { f: f }
-    .form-group
-      label.col-sm-3.control-label
-      br
-      .col-sm-9
-        = f.button :submit, "#{current_user ? 'Сохранить' : 'Зарегистрироваться'}", class: 'btn btn-success'
+  .tab-content
+    #home.tab-pane.active
+      == render 'users/form'
+    #info.tab-pane
+      == render partial: "users/tabs/#{current_user.status}"
+    #notify.tab-pane
+      == render partial: "users/tabs/notification"
+

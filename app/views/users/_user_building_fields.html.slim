@@ -10,7 +10,7 @@
       = f.input :apartment, required: true, input_html: { placeholder: "Наберите номер своей квартиры" }
       = f.input :share, label: "#{UserBuilding.human_attribute_name(:share)}, %", required: true, input_html: \
       { placeholder: "Впишите вашу долю в этой квартире (как в свидетельстве)" }
-      /= f.input :facility_square, required: true
+      = f.input :facility_square, required: true
     = f.input :address, as: :hidden, input_html: { class: 'js-address' }
 
     - if current_user.is_management_company?

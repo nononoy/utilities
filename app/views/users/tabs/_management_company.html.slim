@@ -1,19 +1,28 @@
-br
-.panel.panel-default
-  .panel-heading
-    h3.panel-title Информация о собственнике
-  .panel-body
-    = f.input :type_of_organization, prompt: false
-    = f.input :org_full_name
-    = f.input :org_ogrn
-    = f.input :org_inn
-.panel.panel-default
-  .panel-heading
-    h3.panel-title Документ, удостоверяющий личность представителя
-  .panel-body
-    = f.input :document_type, prompt: false
-    = f.input :series
-    = f.input :number
-    = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date' }
-    = f.input :country_of_issue, as: :string
-    = f.input :issuing_authority
+= simple_form_for @user, html: {class: 'form-horizontal js-form-address'},
+                  wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes,
+                                                                radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean} do |f|
+  = f.error_notification
+  br
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Информация о собственнике
+    .panel-body
+      = f.input :type_of_organization, prompt: false
+      = f.input :org_full_name
+      = f.input :org_ogrn
+      = f.input :org_inn
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title Документ, удостоверяющий личность представителя
+    .panel-body
+      = f.input :document_type, prompt: false
+      = f.input :series
+      = f.input :number
+      = f.input :date_of_issue, as: :string, input_html: { placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date' }
+      = f.input :country_of_issue, as: :string
+      = f.input :issuing_authority
+  .form-group
+    label.col-sm-3.control-label
+    br
+    .col-sm-9
+      = f.button :submit, "#{current_user ? 'Сохранить' : 'Зарегистрироваться'}", class: 'btn btn-success'
