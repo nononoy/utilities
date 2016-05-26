@@ -13,8 +13,9 @@ div role="tabpanel"
       a aria-controls="active" data-toggle="tab" href="#active" role="tab" Открытые собрания
     li class="#{"active" if @active_tab == "closed"}" role="presentation"
       a aria-controls="closed" data-toggle="tab" href="#closed" role="tab" Закрытые собрания
-    li class="#{"active" if @active_tab == "create"}" role="presentation"
-      a aria-controls="create" data-toggle="tab" href="#create" role="tab" Провести собрание
+    -if current_user.has_building? && current_user.status != 'management_company'
+      li class="#{"active" if @active_tab == "create"}" role="presentation"
+        a aria-controls="create" data-toggle="tab" href="#create" role="tab" Провести собрание
     li class="#{"active" if @active_tab == "cabinet"}" role="presentation"
       a aria-controls="cabinet" data-toggle="tab" href="#cabinet" role="tab" Лич.кабинет
     li role="presentation"
