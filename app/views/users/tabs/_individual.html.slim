@@ -10,8 +10,8 @@
     = f.input :middle_name
     = f.input :phone, input_html: {class: 'phone'}, required: true
     = f.input :document_type, prompt: false
-    = f.input :series
-    = f.input :number
+    = f.input :series, input_html: {placeholder: 'Заполняется по желанию'}
+    = f.input :number, input_html: {placeholder: 'Заполняется по желанию'}
     /= f.input :date_of_issue, as: :string, input_html: {placeholder: 'ДД.ММ.ГГГГ', value: f.object.date_of_issue.try(:strftime, "%d.%m.%Y"), class: 'date'}
     /= f.input :country_of_issue, as: :string
     /= f.input :issuing_authority

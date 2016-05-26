@@ -1,9 +1,3 @@
-h2 Объявить собрание
-- current_user.buildings.uniq.each do |building|
-  span#building_summary = building.short_address
-  br
-    = building.appartment_summary(current_user)
-  br
 br
 = simple_form_for @voting, html: { class: 'form-horizontal' } do |f|
   = f.input :building_id, collection: current_user.buildings.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]},
@@ -11,6 +5,7 @@ br
   /= f.input :building_id, collection: current_user.buildings.with_square.uniq.map{ |b| [b.short_address, b.id, { "data-apartment" => current_user.apartments[b.id].join(", ") }]}, include_blank: false, prompt: false, required: true
   .form-group.width-20.float-right
     button.btn.btn.btn-default.float-right.width-100.overflow-hidden data-target="#rules" data-toggle="modal" type="button"  Правила голосования
+  = f.input :description, input_html: {placeholder: 'ПРИЧИНА СОБРАНИЯ (можно не заполнять)', rows: 3}, label: false, required: true
   .form-inline.date-inputs
     .txt Дата проведения:
     .form-group
@@ -23,22 +18,23 @@ br
       = f.text_field :end_at, class: 'datetime form-control datepicker', required: true
     .form-group
       = f.check_box :notify_all,  class: 'vertical-align-middle new_voting_green_checkbox', required: true
-      label.green_style.label.label-success for="voting_notify_all" Оповестить соседей
+      label.green_style.label.label-success.size-16 for="voting_notify_all" Оповестить соседей
 
-  = f.input :description, input_html: {placeholder: 'ПРИЧИНА СОБРАНИЯ (можно не заполнять)', rows: 3}, label: false, required: true
   = f.input :title, as: :text, label: false, input_html: { placeholder: "ТЕМА (придумайте общее название собранию, например: \
       «Переизбрать управляющего» или «Собрать деньги на ремонт 2 и 4 подъездов»)", rows: 3}, required: true
   = hidden_field_tag 'user_full_name', current_user.full_name
   = hidden_field_tag 'user_phone', current_user.phone
   = f.input :user_id, as: :hidden
-  = f.input :chairman, label: "Председателем собрания предлагаю избрать:", required: true
-  = f.input :secretary, label: "Секретарем собрания предлагаю избрать:", required: true
+  = f.input :chairman, label: "Председателем собрания предлагаю избрать:", input_html: { \
+    placeholder: "ФИО кандидата полностью"}, required: true
+  = f.input :secretary, label: "Секретарем собрания предлагаю избрать:", input_html: { \
+    placeholder: "ФИО кандидата полностью"}, required: true
   p
     'Я, #{current_user.full_name}, собственник кв. №
     span.js-apartment= current_user.apartments.values.first.join(", ")
     '&nbsp; предлагаю проголосовать по следующим вопросам:
   .text-center
-    span.label.label-success ВНИМАНИЕ! Все вопросы должны отвечать на вопрос - Что сделать?
+    span.label.label-success.size-16 ВНИМАНИЕ! Все вопросы должны отвечать на вопрос - Что сделать?
   br
 
   #voting_questions
@@ -61,9 +57,10 @@ br
           li Обзвонить, кого возможно, и сказать, что началось голосование.
           li По секрету поделиться с бабушками у подъезда (тем самым запустить сарафанное радио).
           li Поставить галочку напротив кнопки "Оповестить соседей".
+          br
           li
             ' После публикации
-            span.label.label-success не забудьте проголосовать самостоятельно
+            span.label.label-success.size-16 не забудьте проголосовать самостоятельно
 
   .form-group
     button.btn.btn.btn-default.right_margin_10 data-target="#preview_modal" data-toggle="modal" type="button" onclick="fill_preview_modal();" Предварительный просмотр

@@ -33,7 +33,7 @@ html lang="ru"
                     li
                       = link_to 'Собрания', root_path
                     li
-                      = link_to 'Лич.кабинет', profile_path
+                      = link_to 'Лич.кабинет', root_path(tab: "cabinet")
                     li
                       = link_to 'Сообщения', root_path
                     li
@@ -98,7 +98,8 @@ html lang="ru"
         /       li= link_to "Link 3", "/path3"
 
       footer
-        p &copy; СистемаРосДом.ру 2016
+        br
+        p.align_right &copy; СистемаРосДом.ру 2016
       /! Yandex.Metrika counter
       javascript:
         (function (d, w, c) {

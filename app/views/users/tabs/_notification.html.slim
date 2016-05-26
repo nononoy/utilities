@@ -6,6 +6,11 @@
   .well
     .form-group
       => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
+      | Желаю получать уведомления о собраниях
+    br
+    br
+    .form-group
+      => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
       | Желаю получать ответы на мои запросы
     br
     .form-group
@@ -15,6 +20,7 @@
     .form-group
       => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
       | Желаю направлять предложения всему дому
+    br
     br
     .form-group
       => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
@@ -31,6 +37,7 @@
     .form-group
       => f.check_box :notify_me, class: 'vertical-align-middle no-margin'
       | Желаю направлять жалобы обслуживающей компании
+    br
     br
     .form-group
       => f.check_box :notify_me, class: 'vertical-align-middle no-margin'

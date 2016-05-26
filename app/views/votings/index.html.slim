@@ -13,9 +13,8 @@ div role="tabpanel"
       a aria-controls="active" data-toggle="tab" href="#active" role="tab" Открытые собрания
     li class="#{"active" if @active_tab == "closed"}" role="presentation"
       a aria-controls="closed" data-toggle="tab" href="#closed" role="tab" Закрытые собрания
-    -if current_user.has_building? && current_user.status != 'management_company'
-      li role="presentation"
-        = link_to "Провести собрание", "#{new_voting_path}", role: "tab"
+    li class="#{"active" if @active_tab == "create"}" role="presentation"
+      a aria-controls="create" data-toggle="tab" href="#create" role="tab" Провести собрание
     li class="#{"active" if @active_tab == "cabinet"}" role="presentation"
       a aria-controls="cabinet" data-toggle="tab" href="#cabinet" role="tab" Лич.кабинет
     li role="presentation"
@@ -52,6 +51,9 @@ div role="tabpanel"
     #cabinet.tab-pane class="#{"active" if @active_tab == "cabinet"}" role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render file: 'users/edit'
+    #create.tab-pane class="#{"active" if @active_tab == "create"}" role="tabpanel"
+      #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
+        = render partial: 'votings/new'
     #appartment.tab-pane role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/voting', collection: [], locals: {print: true}

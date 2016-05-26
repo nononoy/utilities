@@ -7,6 +7,7 @@ class VotingsController < ApplicationController
     @user_buildings = current_user.user_buildings.to_a
     building_votings = current_user.building_votings.includes(voting_questions: :attachments)
     @active_votings = building_votings.active.uniq
+    @voting = Voting.new user_id: current_user.id
 
     @active_tab = if params[:tab]
                    params[:tab]
@@ -18,7 +19,6 @@ class VotingsController < ApplicationController
   end
 
   def new
-    @voting = Voting.new user_id: current_user.id
   end
 
   def create
