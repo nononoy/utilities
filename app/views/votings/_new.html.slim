@@ -31,7 +31,7 @@ br
     placeholder: "ФИО кандидата полностью"}, required: true
   p
     'Я, #{current_user.full_name}, собственник кв. №
-    span.js-apartment= current_user.apartments.values.first.join(", ")
+    span.js-apartment= (current_user.apartments.values.first.join(", ") rescue "")
     '&nbsp; предлагаю проголосовать по следующим вопросам:
   .text-center
     span.label.label-success.size-16 ВНИМАНИЕ! Все вопросы должны отвечать на вопрос - Что сделать?
