@@ -5,8 +5,8 @@
   br
   .well
     = f.input :email, required: true, label: "Псевдоним"
-    = f.input :first_name, required: true
     = f.input :surname, required: true
+    = f.input :first_name, required: true
     = f.input :middle_name
     = f.input :phone, input_html: {class: 'phone'}, required: true
     = f.input :document_type, prompt: false

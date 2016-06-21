@@ -2,9 +2,9 @@ ru:
   enumerize:
     user:
       status:
-        individual: 'Физическое лицо - собственник'
-        legal: 'Юридическое лицо - собственник'
-        management_company: 'Обслуживающая компания (ТСЖ, УК, ЖЕК и т.д.)'
+        individual: 'Физ. лицо - собственник'
+        legal: 'Юр. лицо - собственник'
+        management_company: 'Обслуживающая компания (ТСЖ, ЖЕК, УК, ООО и т.д.)'
       type_of_organization:
         ao: АО
         ooo: ООО

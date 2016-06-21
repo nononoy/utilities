@@ -29,9 +29,10 @@ div role="tabpanel"
           = render partial: 'votings/voting', collection: @active_votings, locals: {print: false}
         - else
           br
-          | Сейчас нет активных собраний
-          br
-          | Вы сможете самостоятельно инициировать новое на странице "Провести собрание"
+          .well.well-lg
+            | Сейчас нет активных собраний
+            br
+            | Вы сможете самостоятельно инициировать новое на странице "Провести собрание"
         br
         hr
         h3 Форум

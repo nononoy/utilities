@@ -2,17 +2,17 @@ br
 div role="tabpanel"
   ul.nav.nav-tabs
     li.active
-      a aria-controls="home" data-toggle="tab" href="#home" role="tab" Адреса
-    li
       a aria-controls="info" data-toggle="tab" href="#info" role="tab" Псевдоним
+    li
+      a aria-controls="home" data-toggle="tab" href="#home" role="tab" Адреса
     li
       a aria-controls="notify" data-toggle="tab" href="#notify" role="tab" Оповещение
 
   .tab-content
-    #home.tab-pane.active
-      == render 'users/form'
-    #info.tab-pane
+    #info.tab-pane.active
       == render partial: "users/tabs/#{current_user.status}"
+    #home.tab-pane
+      == render 'users/form'
     #notify.tab-pane
       == render partial: "users/tabs/notification"
 
