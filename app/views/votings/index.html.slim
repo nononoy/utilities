@@ -18,8 +18,8 @@ div role="tabpanel"
         a aria-controls="create" data-toggle="tab" href="#create" role="tab" Провести собрание
     li class="#{"active" if @active_tab == "cabinet"}" role="presentation"
       a aria-controls="cabinet" data-toggle="tab" href="#cabinet" role="tab" Лич.кабинет
-    li role="presentation"
-      a aria-controls="appartment" data-toggle="tab" href="#appartment" role="tab" Квартира
+    li  class="#{"active" if @active_tab == "apartment"}"role="presentation"
+      a aria-controls="apartment" data-toggle="tab" href="#apartment" role="tab" Квартира
 
   /! Tab panes
   .tab-content
@@ -56,6 +56,6 @@ div role="tabpanel"
     #create.tab-pane class="#{"active" if @active_tab == "create"}" role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
         = render partial: 'votings/new'
-    #appartment.tab-pane role="tabpanel"
+    #apartment.tab-pane class="#{"active" if @active_tab == "apartment"}" role="tabpanel"
       #closed_accordion.panel-group aria-multiselectable="true" role="tablist"
-        = render partial: 'votings/voting', collection: [], locals: {print: true}
+        = render partial: 'votings/apartment'

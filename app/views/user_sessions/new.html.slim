@@ -30,7 +30,8 @@ br
         .form-group
           = f.input :password_confirmation, class: "form-control", label: "Подтверждение пароля", required: true
         .form-group
-          = f.input :agreement, as: :boolean, required: true, label: '', inline_label: "Я ознакомлен(а) с правилами и согласен(а) на обработку моих персональных данных"
+          = f.input :agreement, as: :boolean, required: true, label: '',
+                    inline_label: "Я ознакомлен(а) с #{link_to "правилами", "javascript:void(0);", data: {target: "#rules", toggle: "modal"}} и согласен(а) на обработку моих персональных данных".html_safe
         .form-group
           = f.input :status, as: :radio_buttons, label: false
         = submit_tag "Зарегистрироваться", class: 'btn btn-success'
@@ -59,6 +60,18 @@ br
         = submit_tag "Отправить", class: 'btn btn-warning align_right'
         .clearfix
 / = link_to 'Back', user_sessions_path
+
+#rules.modal.fade role="dialog"
+  .modal-dialog
+    /! Modal content
+    .modal-content
+      .modal-header
+        button.close data-dismiss="modal" type="button"  &times;
+        h4.modal-title Правила
+      .modal-body
+        p Правила
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Закрыть
 
 #how_to_sign_up.modal.fade role="dialog"
   .modal-dialog

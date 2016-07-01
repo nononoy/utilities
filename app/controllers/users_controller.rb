@@ -43,7 +43,12 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to votings_path(tab: "cabinet"), notice: 'Успешное редактирование' }
+        after_update_tab = if params[:tab2]
+                             params[:tab2]
+                           else
+                             "profile"
+                           end
+        format.html { redirect_to votings_path(tab: "cabinet", tab2: after_update_tab), notice: 'Успешное редактирование' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

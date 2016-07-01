@@ -5,6 +5,7 @@
   br
   .well
     = f.input :email, required: true, label: "Псевдоним"
+    = hidden_field_tag "tab2", "profile"
     = f.input :surname, required: true
     = f.input :first_name, required: true
     = f.input :middle_name

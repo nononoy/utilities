@@ -12,7 +12,7 @@
       { placeholder: "Впишите вашу долю в этой квартире (как в свидетельстве)" }
       = f.input :facility_square, required: true
     = f.input :address, as: :hidden, input_html: { class: 'js-address' }
-
+    = hidden_field_tag "tab2", "address"
     - if current_user.is_management_company?
       - if f.object.building
         = f.simple_fields_for :building do |ff|

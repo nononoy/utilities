@@ -2,6 +2,7 @@
                   wrapper: :horizontal_form, wrapper_mappings: {check_boxes: :horizontal_radio_and_checkboxes,
                                                                 radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean} do |f|
   = f.error_notification
+  = hidden_field_tag "tab2", "notify"
   br
   .well
     .form-group

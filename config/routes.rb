@@ -11,9 +11,13 @@ Rails.application.routes.draw do
 
   get '/profile' => 'users#edit', as: :profile
 
-
-
   resources :votings
+  resources :user_building_meters, only: [:upadate_all,:send_data, :create, :new, :index] do
+    collection do
+      patch :update_all
+      patch :send_data
+    end
+  end
   get 'login' => 'user_sessions#new', as: :login
   post 'logout' => 'user_sessions#destroy', as: :logout
 

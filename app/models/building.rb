@@ -10,6 +10,7 @@ class Building < ActiveRecord::Base
 
   scope :with_square, -> { where.not(full_building_square: nil) }
 
+
   def short_address
     "#{city}, #{street}, #{number}"
   end

@@ -10,10 +10,15 @@ class VotingsController < ApplicationController
     @voting = Voting.new user_id: current_user.id
 
     @active_tab = if params[:tab]
-                   params[:tab]
-                 else
-                   "active"
-                 end
+                    params[:tab]
+                   else
+                    "active"
+                   end
+    @active_tab_2 = if params[:tab2]
+                      params[:tab2]
+                    else
+                      "profile"
+                    end
     @current = params[:month].present? ? Date.parse(params[:month]) : Date.today
     @closed_votings = building_votings.closed.where(start_at: @current.beginning_of_month.beginning_of_day..@current.end_of_month.end_of_day).uniq
   end

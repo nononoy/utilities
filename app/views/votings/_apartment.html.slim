@@ -1,0 +1,89 @@
+- current_user.user_buildings.each do |user_building|
+  - if user_building.building
+    h3 Квартира #{user_building.apartment}
+    p = user_building.building.short_address
+    .well.well-lg
+      .row
+        .col-xs-6
+          h4.centered
+            ' Счетчики в квартире
+          .table-responsive
+            = form_tag update_all_user_building_meters_path, :method => :patch, html: {class: "form-horizontal"} do
+              table class="table table-hover"
+                tr
+                  th Название
+                  th Вкл
+                  th Зав.номер
+                - user_building.user_building_meters.each do |meter|
+                  = fields_for "user_building_meter[]", meter do |meter_field|
+                    tr
+                      td = meter_field.text_field :name, class: "form-control"
+                      td = meter_field.check_box :enabled, value: meter.enabled == true
+                      td
+                        .form-group.no-margin
+                          = meter_field.text_field :number, class: "form-control"
+              .form-group
+                .col-sm-12
+                  => submit_tag 'Сохранить изменения', class: 'btn btn-success'
+                  = link_to "Новый счетчик", "#", :class => "btn btn-primary", "data-toggle" => "modal",
+                            "data-target" => "#new_meter_modal"
+
+        .col-xs-6
+          h4.centered Отправить показания
+          .table-responsive
+            = form_tag send_data_user_building_meters_path, :method => :patch, html: {class: "form-horizontal"} do
+              table class="table table-hover"
+                tr
+                  th Название
+                  th Данные
+                - user_building.user_building_meters.each do |meter|
+                  = fields_for "user_building_meter[]", meter do |meter_field|
+                    tr
+                      td = meter.name
+                      td
+                        .form-group.no-margin
+                          = text_field_tag "user_building_meter[][value]", "", value: "", disabled: (meter.enabled == false),
+                                           class: "form-control", required: (meter.enabled == false)
+              .form-group
+                .col-sm-9
+                  = submit_tag 'Отправить показания счетчиков', class: 'btn btn-success'
+      hr
+      .row
+        .col-xs-12
+          h3.text-center Собственники квартиры
+          - user_building.building.users.each_with_index do |user, index|
+            .panel.panel-info
+              .panel-heading
+                b.panel-title Собственник #{index+1}
+              .panel-body
+                .row
+                  .col-xs-2
+                    = image_tag "no-photo.png", class: "img-responsive"
+                  .col-xs-10
+                    .col-xs-12.text-right
+                      h4 = user.full_name
+                      h5 = user.email
+                      hr
+                    - target_building = user.user_buildings.find_by_building_id(user_building.building.id)
+                    bold> Доля в квартире: #{target_building.share}%, #{target_building.facility_square} м.кв.
+                    = link_to "Изменить данные о квартире", votings_path(tab: "cabinet", tab2: "address")
+                    .right_edit.align_right
+                      = link_to "Изменить профиль", votings_path(tab: "cabinet"), class: "btn btn-success #{user == current_user ? "active" : "disabled"}"
+    #new_meter_modal.modal.fade role="dialog"
+      .modal-dialog
+        /! Modal content
+        = simple_form_for user_building.user_building_meters.new, html: { class: 'form-horizontal js-form-address', novalidate: false },
+                          wrapper: :horizontal_form, wrapper_mappings: { check_boxes: :horizontal_radio_and_checkboxes,
+                                                                         radio_buttons: :horizontal_radio_and_checkboxes, file: :horizontal_file_input, boolean: :horizontal_boolean } do |f|
+          .modal-content
+            .modal-header
+              button.close data-dismiss="modal" type="button"  &times;
+              h4.modal-title Добавление нового счетчика
+            .modal-body.new_form
+              = f.input :name, required: true, class: "form-control", label: "Название"
+              = f.input :number, class: "form-control", label: "Зав.номер"
+
+              = f.input :user_building_id, as: :hidden, value: user_building.id, class: "form-control"
+            .modal-footer
+              = submit_tag 'Сохранить', class: 'btn btn-success'
+              button.btn.btn-default data-dismiss="modal" type="button"  Закрыть

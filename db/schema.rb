@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517181021) do
+ActiveRecord::Schema.define(version: 20160630160635) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "attachable_id",   limit: 4
@@ -32,6 +32,23 @@ ActiveRecord::Schema.define(version: 20160517181021) do
     t.integer  "num_of_facilities",    limit: 4
     t.integer  "full_building_square", limit: 4
   end
+
+  create_table "meters", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "user_building_meters", force: :cascade do |t|
+    t.integer  "user_building_id", limit: 4
+    t.boolean  "enabled",          limit: 1,   default: false, null: false
+    t.string   "name",             limit: 255
+    t.string   "number",           limit: 255
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  add_index "user_building_meters", ["user_building_id"], name: "index_user_building_meters_on_user_building_id", using: :btree
 
   create_table "user_buildings", force: :cascade do |t|
     t.integer  "user_id",         limit: 4
@@ -143,6 +160,7 @@ ActiveRecord::Schema.define(version: 20160517181021) do
   add_index "votings", ["building_id"], name: "index_votings_on_building_id", using: :btree
   add_index "votings", ["user_id"], name: "index_votings_on_user_id", using: :btree
 
+  add_foreign_key "user_building_meters", "user_buildings"
   add_foreign_key "user_buildings", "buildings"
   add_foreign_key "user_buildings", "users"
   add_foreign_key "user_voting_questions", "users"

@@ -21,10 +21,12 @@ class UserBuilding < ActiveRecord::Base
   belongs_to :user
   belongs_to :building
   has_many :votings, through: :building
+  has_many :user_building_meters
 
   accepts_nested_attributes_for :building, reject_if: :all_blank
 
   before_create :set_building
+  after_create :create_default_meters
 
   scope :with_apartment, -> { where.not(apartment: nil) }
   scope :by_building, -> (building) { where(building: building) }
@@ -35,6 +37,7 @@ class UserBuilding < ActiveRecord::Base
 
   private
 
+
     def set_building
       unless building_id.present?
         self.building = Building.where(city: city, street: street, number: building_number).first_or_create
@@ -44,4 +47,10 @@ class UserBuilding < ActiveRecord::Base
       end
     end
 
+  def create_default_meters
+    default_meters = ['Х\В Кухня', 'Г\В Кухня', 'Х\В Санузел', 'Г\В Санузел', 'Электроэнергия', 'Тепловая энергия']
+    default_meters.each do |meter|
+      user_building_meters.create(name: meter)
+    end
+  end
 end
