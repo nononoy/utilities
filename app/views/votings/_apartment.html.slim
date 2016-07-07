@@ -6,7 +6,7 @@
       .row
         .col-xs-6
           h4.centered
-            ' Счетчики в квартире
+            ' Счётчики в квартире
           .table-responsive
             = form_tag update_all_user_building_meters_path, :method => :patch, html: {class: "form-horizontal"} do
               table class="table table-hover"
@@ -25,7 +25,7 @@
               .form-group
                 .col-sm-12
                   => submit_tag 'Сохранить изменения', class: 'btn btn-success'
-                  = link_to "Новый счетчик", "#", :class => "btn btn-primary", "data-toggle" => "modal",
+                  = link_to "Новый счётчик", "#", :class => "btn btn-primary", "data-toggle" => "modal",
                             "data-target" => "#new_meter_modal"
 
         .col-xs-6
@@ -46,7 +46,7 @@
                                            class: "form-control", required: (meter.enabled == false)
               .form-group
                 .col-sm-9
-                  = submit_tag 'Отправить показания счетчиков', class: 'btn btn-success'
+                  = submit_tag 'Отправить показания счётчиков', class: 'btn btn-success'
       hr
       .row
         .col-xs-12
@@ -78,7 +78,7 @@
           .modal-content
             .modal-header
               button.close data-dismiss="modal" type="button"  &times;
-              h4.modal-title Добавление нового счетчика
+              h4.modal-title Добавление нового счётчика
             .modal-body.new_form
               = f.input :name, required: true, class: "form-control", label: "Название"
               = f.input :number, class: "form-control", label: "Зав.номер"

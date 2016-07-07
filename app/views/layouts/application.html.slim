@@ -25,7 +25,7 @@ html lang="ru"
           a.navbar-brand href=root_url СистемаРосДом.ру - это интернет сервис для голосования жильцов
           .navbar-collapse.collapse.navbar-responsive-collapse
             ul.nav.navbar-nav.navbar-right
-              - if current_user
+              - if true #current_user
                 li.dropdown
                   a.dropdown-toggle.menu-link-padding data-toggle="dropdown" href="#"
                     span.glyphicon.glyphicon-align-justify.menu-glyph-lg

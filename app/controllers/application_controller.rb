@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
     def not_authenticated
-      redirect_to login_path, alert: "Вы находитесь на странице входа в сервис голосования. Если Вы здесь первый раз и хотите проголосовать, нужно зарегистрироваться."
+      redirect_to login_path, notice: "Вы находитесь на странице входа в сервис голосования. Если Вы здесь первый раз и хотите проголосовать, нужно зарегистрироваться."
     end
 
     def set_mailer_host

@@ -12,7 +12,7 @@ class UserBuildingMetersController < ApplicationController
     puts params[:user_building_meter]
     @user_building_meter = UserBuildingMeter.new voting_params
     if @user_building_meter.save
-      redirect_to votings_path(tab: "apartment"), notice: 'Счетчик успешно создан'
+      redirect_to votings_path(tab: "apartment"), notice: 'Счётчик успешно создан'
     else
       render :new
     end
